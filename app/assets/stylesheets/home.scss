@@ -23,10 +23,10 @@ body{
 }
 
 .cartItem{
-    display: flex;
+	display: flex;
     margin: 0.5em 0.5em;
     width: 525px;
-    height: 110px;
+    height: 115px;
     border: 1px solid rgba(0,0,0,.125);
 }
 
@@ -34,7 +34,8 @@ body{
     width:20%;
     background-image: url(maca.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+	background-size: contain;
+	border-right: 1px solid rgba(0,0,0,.125);
 }
 
 .cartItemBody{
@@ -43,6 +44,7 @@ body{
 }
 
 .cartItemForm{
+	padding-right: 5px;
     width:30%;
 }
 .menuCategory{
@@ -87,7 +89,8 @@ body{
 .menuItemImg{
     width: 100%;
     height: 200px;
-    border-color: white;
+	border-color: white;
+	border-radius: 0;
     overflow: hidden;
 }
 .containerRow {
@@ -161,9 +164,9 @@ body{
 	background-attachment: local;
 	background-position: center;
 	background-size: cover;
-	/*background-color: #333333;
+	background-color: #6b6b6b;
 	background-blend-mode: multiply;
-*/
+
 }
 /*.officeImg1{
 	background-image: url(office.jpg);

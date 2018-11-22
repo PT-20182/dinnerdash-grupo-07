@@ -18,18 +18,20 @@
     
     <div class="rowBody ">
         <div class="rowBodyDiv">
-            <h2 class="text-gray">Saladas</h2>
+            <h2 class="text-gray">Frutas</h2>
             <div class="menuCategory">
+
+            <% @meals.each do |meal| %>
                 <div class="card menuCard">
                     <div class="card menuItemImg">
                         <%= image_tag  "maca.jpg", class: "card-img" %>
                         <div class="card-img-overlay d-flex align-items-end noPadding">
-                                <div class="menuItemTitle">Maçã</div>
+                                <div class="menuItemTitle"><%= meal.name %></div>
                         </div>
                     </div>
                     <div class="card-body" style="padding:1em;">
-                        <p class="text-muted mb-0">Uma maçã muito deliciosa</p>
-                        <p class="priceText">R$8,00 por porção</p>
+                        <p class="text-muted mb-0"><%= meal.description %></p>
+                        <p class="priceText">R$<%= meal.price %> por porção</p>
                         <form>
                             <div class="form-group">
                                 <label class="text-gray">Quantidade</label>
@@ -39,64 +41,17 @@
                                     <option>3</option>
                                     <option>4</option>
                                     <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
                                 </select>
-                                <button type="submit" class="textBox confirmBox margin-updown-min ">adicionar ao meu prato</button>
+                                <button type="submit" class="textBox confirmBox margin-updown-min" >adicionar ao meu prato</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <div class="card menuCard">
-                    <div class="card menuItemImg">
-                        <%= image_tag  "maca.jpg", class: "card-img"%>
-                        <div class="card-img-overlay d-flex align-items-end noPadding">
-                            <div class="menuItemTitle">Maçã</div>
-                        </div>
-                    </div>
-                    <div class="card-body" style="padding:1em;">
-                        <p class="text-muted mb-0">Uma maçã muito deliciosa</p>
-                        <p class="priceText">R$8,00 por porção</p>
-                        <form>
-                            <div class="form-group">
-                                <label class="text-gray">Quantidade</label>
-                                <select class="form-control form-control-sm ">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                                <button type="submit" class="textBox confirmBox margin-updown-min ">adicionar ao meu prato</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card menuCard">
-                    <div class="card menuItemImg">
-                        <%= image_tag  "maca.jpg", class: "card-img" %>
-                        <div class="card-img-overlay d-flex align-items-end noPadding">
-                            <div class="menuItemTitle">Maçã</div>
-                        </div>
-                    </div>
-                    <div class="card-body" style="padding:1em;">
-                        <p class="text-muted mb-0">Uma maçã muito deliciosa</p>
-                        <p class="priceText">R$8,00 por porção</p>
-                        <form>
-                            <div class="form-group">
-                                <label class="text-gray">Quantidade</label>
-                                <select class="form-control form-control-sm ">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                                <button type="submit" class="textBox confirmBox margin-updown-min ">adicionar ao meu prato</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <% end %>
             </div>
         </div>
         <div class="grayline"></div>
@@ -104,59 +59,39 @@
             <h2 class="text-gray">Finalizou seu prato?</h2>
             <span class="text-muted mb-0"class="text-muted mb-0">Confira os itens pedidos antes de confirmar o pedido.</span>
             <div class="menuCategory">
-                <div class="cartItem">
-                    <div class="cartItemImg">
+                
+                <% @meals.each do |meal| %>
+                    <div class="cartItem">
+                        <div class="cartItemImg">
+                        </div>
+                        <div class="cartItemBody">
+                            <span class="subsubTitle"><%=meal.name%></span>
+                            <br>
+                            <span class="text-muted mb-0">Quantidade: 1</span>
+                            <br>
+                            <span class="text-muted mb-0">Preço unitário: R$<%=meal.price%></span>
+                            <br>
+                            <span class="text-muted mb-0">Preço total: R$<%=meal.price%></span>
+                        </div>
+                        <div class="cartItemForm">
+                            <form>
+                                <label class="text-gray">Quantidade</label>
+                                <select class="form-control form-control-sm ">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                </select>
+                                <button type="submit" class="textBox loginBox loginBox-red removeItemCart" style="padding: 0.3em 0;">remover</button>    
+                            </form>
+                        </div>
                     </div>
-                    <div class="cartItemBody">
-                        <span class="subsubTitle">Maçã</span>
-                        <br>
-                        <span class="text-muted mb-0">Quantidade: 2</span>
-                        <br>
-                        <span class="text-muted mb-0">Preço unitário: R$8,00</span>
-                        <br>
-                        <span class="text-muted mb-0">Preço total: R$16,00</span>
-                    </div>
-                    <div class="cartItemForm">
-                        <form>
-                            <label class="text-gray">Quantidade</label>
-                            <select class="form-control form-control-sm ">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                            </select>
-                            <button type="submit" class="textBox loginBox loginBox-red removeItemCart">remover</button>    
-                        </form>
-                    </div>
-                </div>
-
-                <div class="cartItem">
-                    <div class="cartItemImg">
-                    </div>
-                    <div class="cartItemBody">
-                        <span class="subsubTitle">Maçã</span>
-                        <br>
-                        <span class="text-muted mb-0">Quantidade: 2</span>
-                        <br>
-                        <span class="text-muted mb-0">Preço unitário: R$8,00</span>
-                        <br>
-                        <span class="text-muted mb-0">Preço total: R$16,00</span>
-                    </div>
-                    <div class="cartItemForm">
-                        <form>
-                            <label class="text-gray">Quantidade</label>
-                            <select class="form-control form-control-sm ">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                            <button type="submit" class="textBox loginBox loginBox-red removeItemCart">remover</button>    
-                        </form>
-                    </div>
-                </div>
+                <% end %>
             </div>
             <div class="grayline"></div>
             <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$16,00</span></h3>
