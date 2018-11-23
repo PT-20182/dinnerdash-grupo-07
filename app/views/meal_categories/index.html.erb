@@ -1,0 +1,5 @@
+<div>
+    <% @meal_categories.each do |meal_category| %>
+        <p><%= link_to meal_category.name, meal_category_path(meal_category)%></p>
+    <% end %>
+</div>

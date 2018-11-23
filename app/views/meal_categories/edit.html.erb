@@ -1,0 +1,5 @@
+<h3>Update tipo de refeição </h3>
+<%= form_with model: @meal_category do |form| %>
+    <%= form.text_field :name, placeholder: "Nome do tipo de refeição" %>
+    <%= form.submit %>
+<% end %>
