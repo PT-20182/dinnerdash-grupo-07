@@ -11,7 +11,7 @@ body {
 }
 
 #background {
-	background-image: url("images/restaurant.jpeg");
+	background-image: asset-data-url("restaurant.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
 
