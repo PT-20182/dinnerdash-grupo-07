@@ -1,3 +1,7 @@
+<head>
+  <%= stylesheet_link_tag "marco", media: "all" %>
+</head>
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -41,3 +45,76 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+<div class="navbar logo">
+  <a class="navbar-brand" href="#">dinnerdash</a>
+</div>
+
+<div class="ddnavbar">
+  <div class="row no-gutters">
+    <div class="col-sm-4">
+      <a class="nav-link" href="#"">perfil</a>
+    </div>
+    <div class="col-sm-4">
+        <a class="nav-link" href="#"">sair</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="title">
+  <div class="container-fluid">
+    <div class="row smaller-gutter">
+      <div class="col-md title-t">
+        <h1>Seu Perfil</h1>
+        <h5>Atualize os seus dados pessoais e senha.</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="aba">
+<form>
+<div class="form-group container-fluid">
+  <div class="row smaller-gutter">
+    <div class="col-md">
+      <label for="Nome">Nome</label>
+      <input type="name" class="form-control" id="Nome">
+    </div>
+    <div class="col-md">
+      <label for="Email">Email</label>
+      <input type="email" class="form-control" id="Email">
+    </div>
+  </div>
+  <div class="row smaller-gutter">
+    <div class="col-md">
+      <label for="NewPass">Nova senha (deixe em branco caso não queira alterar)</label>
+      <input type="password" class="form-control" id="NewPass">
+    </div>
+    <div class="col-md">
+      <label for="CrrtPass">Senha atual, por questão de segurança</label>
+      <input type="password" class="form-control" id="CrrtPass">
+    </div>
+  </div>
+  <div class="row smaller-gutter">
+    <div class="col-md">
+      <button type="submit" class="btn btn-success ddbtn">atualizar meu perfil</button>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+
+<footer class="ddfooter container-fluid">
+  <div class="row smaller-gutter">
+    <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
+    <!-- Fonte não é igual -->
+    <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
+  </div>
+
+</footer>
+
+<div id="background">
+  <div class="darken-overlay"></div>
+</div>
