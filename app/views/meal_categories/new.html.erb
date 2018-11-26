@@ -1,5 +1,20 @@
-<h3>Criar categoria de refeição</h3>
-<%= form_with model: @meal_category do |form|%>
-    <%= form.text_field :name, placeholder: "Nome do tipo de refeição" %>
-    <%= form.submit %>
-<% end %>
+<html>
+    <head>
+    </head>
+    </body>
+        <div class="div">
+            <div class="div-coluna">
+                <h3>Nome categoria de refeição</h3>
+                <hr>
+                <%= form_with model: @meal_category do |form|%>
+                    <p class="input-label">Nome</p>
+                    <%= form.text_field :name, placeholder: "Nome do tipo de refeição", class:'campo-text'%>
+                    <div class="cancel-envia">
+                        <%= form.submit 'criar categoria de refeição', class:'button-enviar'%>
+                        <%= link_to 'voltar', meal_categories_path, class:'button-cancelar'%>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </body>
+</html>
