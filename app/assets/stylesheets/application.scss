@@ -12,8 +12,10 @@
  *
  *
  */
- @import "bootstrap";
- @import "home";
+ 
+@import "bootstrap";
+@import "home";
+@import "meal_categories";
 
  * {
 	font-family: 'Open Sans', sans-serif;
@@ -72,3 +74,4 @@
 .h-login {
 	padding-bottom: 0.5em;
 }
+
