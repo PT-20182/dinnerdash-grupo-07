@@ -1,2 +1,0 @@
-class TestMeal < ApplicationRecord
-end

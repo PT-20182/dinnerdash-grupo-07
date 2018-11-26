@@ -13,8 +13,8 @@ MealCategory.create(name: 'Entrada')
 MealCategory.create(name: 'Parto principal')
 MealCategory.create(name: 'Sobremesa')
 
-TestMeal.create(name:"Maçã", description: "Uma maçã muito deliciosa", price: "8,00")
-TestMeal.create(name:"Banana", description: "A preferida dos macacos", price: "4,00")
-TestMeal.create(name:"Abacate", description: "Faz uma vitamina deliciosa", price: "10,00")
-TestMeal.create(name:"Abacaxi", description: "A fruta da realeza", price: "15,00")
+Meal.create(name:"Maçã", description: "Uma maçã muito deliciosa", price: "8,00")
+Meal.create(name:"Banana", description: "A preferida dos macacos", price: "4,00")
+Meal.create(name:"Abacate", description: "Faz uma vitamina deliciosa", price: "10,00")
+Meal.create(name:"Abacaxi", description: "A fruta da realeza", price: "15,00")
 
