@@ -1,38 +1,35 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="container-fluid screen-login-size">
+    <div class="row">
+      <div class="col-8">
+        <%=image_tag("login_img.jpg", alt: "img", class: "img-size")%>
+      </div>
 
-  <div class="container">
-    <div class="coluna1">
-      <%=image_tag("login_img.jpg", alt: "img", :class => "box-static")%>
-    </div>
+      <div class="col-4">
+        <div class="form-size">
+          <h2 class="h-login">dinnerdash</h2>
+          
+          <div class="field form-group">
+            <%= f.label :email %> <br/>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input" %>
+          </div>
 
-    <div class="coluna2">
-      <div class="box-relative">
-        <h1>dinnerdash</h1>
-        
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "current-password", class: " form-control input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "fazer login", class: "btn btn-success button-size button" %>
+          </div>
+
+          <hr id="meuHr">
+          <h5 class="h-login">Não possui conta?</h5>
+          <div class="actions">
+            <%= link_to "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success button-size" %>
+          </div>
         </div>
-
-        <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "fazer login", :class => 'button' %>
-        </div>
-
-				<hr id="meuHr">
-        <h3>Não possui conta?</h1>
-        <div class="actions">
-          <%= f.submit "Sign up", :class => 'button cadastro' %>
-        </div>
-
-
       </div>
     </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
