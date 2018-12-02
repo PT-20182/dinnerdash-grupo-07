@@ -30,7 +30,7 @@
                                     <%= rand(500) %>
                                 </td>
                                 <td class="table-body-categoria-de-refeicao-data table-categoria-de-refeicao-coluna">
-                                    <%=rand(27)+1%>/<%=rand(11)+1%>/<%=rand(18)+2000%>
+                                    <%= meal_category.created_at.strftime("%d/%m/%Y") %>
                                 </td>
                                 <td class="table-body-categoria-de-refeicao-editar table-categoria-de-refeicao-coluna">
                                     <%= link_to 'editar', edit_meal_category_path(meal_category),  method: :get, class: 'table-categoria-de-refeicao-editar' %>
