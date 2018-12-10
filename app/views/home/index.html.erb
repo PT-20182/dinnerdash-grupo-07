@@ -9,6 +9,9 @@
 
             <div class="rightPart" >
                 <% if user_signed_in? %>
+                    <% if current_user.is_admin? %>
+                        <%= link_to "backoffice", meals_path, class:"textSpacement", style:"color: orange;" %>
+                    <% end %>
                     <a href="" class="noChangeLink"><span class="textSpacement">perfil</span></a>
                     <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink textSpacement"   %>    
                 <% else %>
