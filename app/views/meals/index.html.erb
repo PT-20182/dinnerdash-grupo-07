@@ -1,0 +1,101 @@
+<div class="containerColumn"> 
+
+		<div class="rowBodyHeader officeImg">
+
+			<div class="rowOptions">
+
+				<div class="leftPart">
+					<span class="dinnerdashLogo">dinnerdash</span>
+				</div>
+
+				<div class="rightPart" >
+					<span class="textSpacement" style="color:orange">backoffice</span>
+					<a href="perfil.html" class="noChangeLink"><span class="textSpacement">perfil</span></a>
+					<a href="..\Pratica 2\login.html" class="noChangeLink"><span class="textSpacement">sair</span></a>
+				</div>
+
+			</div>
+
+			<div class="titleBackOffice">
+				<span class="bigTitle1">Backoffice</span>
+				<br>
+				<span class="subTitle">Gerencie pedidos, refeições e mais.</span>
+			</div>
+
+		</div>
+    
+		<div class="navBar">
+			<span class="navOption textSpacement notSelected">Pedidos</span>
+			<span class="navOption textSpacement notSelected">Usuários</span>
+			<span class="navOption textSpacement ">Refeições</span>
+			<span class="navOption textSpacement notSelected">Categorias de Refeição</span>
+		</div>
+
+		<div class="rowBody ">
+
+			<div class="rowMeals">
+
+        <% @meals.each do |meal| %>
+
+          <div class="card menuCard">
+
+            <div class="card menuItemImg">
+              
+              <%= image_tag  "maca.jpg", class: "card-img" %>
+
+              <% if meal.available %>
+                <div class="card-img-overlay d-flex align-items-center noPadding">
+                  <div class="notAvailable">Refeição indisponível</div>
+                </div>
+              <% end %>
+
+              <div class="card-img-overlay d-flex align-items-end noPadding">
+                <div class="menuItemTitle"><%= meal.name %></div>
+              </div>
+            </div>
+
+            <div class="card-body" style="padding:0.7em;">
+              <p class="text-muted mb-0"><%= meal.description %></p>
+              <p class="priceText">R$<%= meal.price %> por porção</p>
+              <div class="cardOptions">
+                <%= link_to  '<button type="button" class="textBox confirmBox margin-updown-min yellowBox" 
+                style="width: 95%">editar</button>'.html_safe, edit_meal_path(meal), method: 'get',
+                style: 'width: 100%;' %>
+                <%= link_to  '<button type="button" class="textBox confirmBox margin-updown-min redBox" 
+                style="width: 95%">excluir</button>'.html_safe, meal_path(meal), method: 'delete', 
+                data: {confirm: 'Realmente deseja excluir o prato?'},
+                style: 'width: 100%;'%>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      
+      </div>
+
+      <div class="boxCenter">
+        <button class="pageButton btnLeft"><<</button>
+        <button class="pageButton btnSelected">1</button>
+        <button class="pageButton">2</button>
+        <button class="pageButton btnRight">>></button>
+      </div>
+                
+      <div style="width:12em;">
+        <%= link_to '<button type="button" class="textBox confirmBox" style="padding:0.5em 4px">nova refeição</button>'.html_safe, new_meal_path %>
+			</div>
+			
+		</div>
+
+		<div class="navBar footer">
+			<div class="fullLength">
+				<div class="leftPart">
+					<span > dinnerdash | todos os direitos reservados</span>
+				</div>
+				<div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
+					<span>desenvolvido pelo Grupo 07</span>
+				</div>
+			</div>
+		</div>	
+	
+	</div>
+
+

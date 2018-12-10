@@ -1,0 +1,87 @@
+<div class="containerColumn"> 
+
+		<div class="rowBodyHeader officeImg">
+
+			<div class="rowOptions">
+
+				<div class="leftPart">
+					<span class="dinnerdashLogo">dinnerdash</span>
+				</div>
+
+				<div class="rightPart" >
+					<span class="textSpacement" style="color:orange">backoffice</span>
+					<a href="perfil.html" class="noChangeLink"><span class="textSpacement">perfil</span></a>
+					<a href="..\Pratica 2\login.html" class="noChangeLink"><span class="textSpacement">sair</span></a>
+				</div>
+
+			</div>
+
+			<div class="titleBackOffice">
+				<span class="bigTitle1">Backoffice</span>
+				<br>
+				<span class="subTitle">Gerencie pedidos, refeições e mais.</span>
+			</div>
+
+		</div>
+    
+		<div class="navBar">
+			<span class="navOption textSpacement notSelected">Pedidos</span>
+			<span class="navOption textSpacement notSelected">Usuários</span>
+			<span class="navOption textSpacement ">Refeições</span>
+			<span class="navOption textSpacement notSelected">Categorias de Refeição</span>
+		</div>
+
+		<div class="rowBody ">
+      <h3>Editar refeição</h3>
+      <div class = "grayline"></div>
+      <%= form_with model: @meal, class: "twoColumn" do |form| %>
+        
+          <div class="column3">
+            <label>Nome</label>
+            <%= form.text_field :name, placeholder: "Nome", class:"textBox", value: @meal.name %>
+          </div>
+
+          <div class="column3">
+          </div>
+
+          <div style="width:100%; ">
+            <label>Descrição</label>
+            <%= form.text_field :description, placeholder: "Descrição", class:"textBox",
+            style:"padding-bottom: 5em;", value: @meal.description %>         
+          </div>
+
+          <div class="column3">
+            <label>Preço</label>
+            <%= form.text_field :price, placeholder: "Preço", class:"textBox", value: @meal.price %>
+          </div>
+
+          <div class="column3">
+          </div>
+
+          <div style="width:100%;">
+            <%= form.check_box :available, placeholder: "available", value: @meal.available %>
+            <span>Esta refeição não estará disponível no cardápio.</span>
+          </div>
+
+      
+          <div style="width:100%;">
+          <%= form.submit 'atualizar refeição', :class => "textBox confirmBox", :style => "width:14em;" %>
+          <%= link_to  '<button type="button" class="textBox confirmBox" style="width:10em">voltar</button>'.html_safe, meals_path %>
+          </div>
+
+      <% end %>
+    </div>
+
+		<div class="navBar footer">
+			<div class="fullLength">
+				<div class="leftPart">
+					<span > dinnerdash | todos os direitos reservados</span>
+				</div>
+				<div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
+					<span>desenvolvido pelo Grupo 07</span>
+				</div>
+			</div>
+		</div>	
+	
+</div>
+

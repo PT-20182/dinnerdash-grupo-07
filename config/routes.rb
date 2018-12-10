@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  resources :meals
   resources :meal_categories
   
   devise_for :users
