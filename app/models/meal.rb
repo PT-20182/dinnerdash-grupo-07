@@ -1,3 +1,3 @@
 class Meal < ApplicationRecord
-    has_many :orders, through: :ordermeals
+    has_many :order_meals
 end

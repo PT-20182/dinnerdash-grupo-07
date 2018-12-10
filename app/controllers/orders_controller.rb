@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
     end
 
     def show
+        @order = Order.find(params[:id])
+        @ordermeals = OrderMeal.where("order_id = ?", @order.id)
     end
 
     def new
@@ -12,6 +14,8 @@ class OrdersController < ApplicationController
     end
 
     def edit
+        @order = Order.find(params[:id])
+        @ordermeals = OrderMeal.where("order_id = ?", @order.id)
     end
 
     def create
@@ -34,7 +38,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(:name)
+        params.require(:id).permit(:name)
     end
 
 end

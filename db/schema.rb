@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_182514) do
+ActiveRecord::Schema.define(version: 2018_12_10_113348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2018_12_09_182514) do
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "meal_category_id"
+    t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
   end
 
   create_table "order_meals", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_182514) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meals", "meal_categories"
   add_foreign_key "order_meals", "meals"
   add_foreign_key "order_meals", "orders"
   add_foreign_key "orders", "situations"
