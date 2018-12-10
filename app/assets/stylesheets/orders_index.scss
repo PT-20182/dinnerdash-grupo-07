@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Open+Sans|Source+Sans+Pro|Raleway');
+
+* {
+	font-family: 'Open sans', sans-serif;
+	color: #9f9f9f;
+	font-size: 0.939em;
+}
+
+body {
+	background-color: black;
+}
+
+#background {
+	background-image: url("helloquence.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	position: fixed;
+	width: 100%;
+	height: 80.5%;
+	top: -22%;
+	left: 0;
+	z-index: -1;
+
+	/** a imagem tem que ser escurecida **/
+}
+
+.darken-overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+	position: fixed;
+	top: 0.8%;
+	left: 6.5%;
+}
+
+.ddnavbar {
+    position: fixed;
+	top: 2%;
+	right: 5.5%;
+    font-size: 0.85em;
+}
+
+.navbar-brand {
+	color: white;
+	font-family: 'Amaranth';
+	font-size: 1.49em;
+}
+
+.navbar-brand a:link, a:visited {
+	color: white;
+}
+
+.navbar-brand a:active, a:hover {
+	color: rgb(231, 231, 231);
+}
+
+.nav-link {
+	color: white;
+}
+
+.backoffice {
+    color: #ffc107 !important;
+}
+
+.title {
+	position: fixed;
+	bottom: 63%;
+
+	width: 100%;
+}
+
+.title-t {
+	color: white;
+}
+
+/** Not the right font. The right one (Sofia Pro) is not free. **/
+
+.title-t h1 {
+	font-family: 	'Raleway';
+	font-size: 		4.4em;
+	font-weight:    bold;
+}
+
+.title-t h5 {
+	font-family: 	'Raleway';
+}
+
+.ddsubnav-container {
+    width: 100%;
+    background-color: #343a40;
+}
+
+.ddsubnav {
+    list-style: none;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    margin-top: -3%;
+    margin-left: -35px;
+
+    font-size: 1.2em;
+
+}
+
+.ddsubnav a {
+    text-decoration: none;
+    display: block;
+    color: #9f9f9f;
+    padding: 1em;
+}
+
+.ddsubnav a:hover {
+    color: white;
+}
+
+.aba {
+	position: fixed;
+    bottom: 0;
+
+	width: 100%;
+	height: 63%;
+
+	background-color: white;
+
+	overflow-y: auto;
+
+}
+
+.container-fluid {
+	padding-top: 2.5%;
+	padding-left: 6%;
+	padding-right: 6%;
+
+	width: 100%;
+
+}
+
+.form-control {
+	height: 55%;
+}
+
+label {
+	font-weight: bold;
+}
+
+.smaller-gutter {
+	margin-right: 9px;
+	margin-left: 9px;
+}
+
+.smaller-gutter .col-md {
+	padding-right: 9px;
+    padding-left: 9px;
+}
+
+.col-md {
+	margin-bottom: 2%;
+}
+
+.ddbtn {
+	width: 			34%;
+	font-size: 		1em;
+
+	margin-top: 	0;
+
+	padding:		0.75%;
+}
+
+.ddfooter {
+	position: fixed;
+	bottom: -1%;
+
+	padding-top: 1%;
+
+
+	background-color: #f2f2f2;
+
+	font-size: 1.07em;
+}
+
+.ddfooter .col-md {
+	margin-bottom: 2%;
+	text-align: left;
+	color: #5e5e5e;
+}
+
+.table_h th {
+	background-color: #DEE2E6;
+	color: #6B6C6D;
+	padding-bottom: 1%;
+	padding-top: 1%;
+	padding-left: 1%;
+	text-align: left;
+}
+
+.table_d {
+	margin: 0px;
+
+}
+
+table {
+    border-spacing: 0;
+    margin-top: -3%;
+    height: 60%;
+    font-size: 1.2em;
+}
+
+td {
+	color: #868686;
+	text-align: left;
+    padding: 0.5%;
+    padding-left: 1%;
+	border-bottom: 2px solid #DEE2E6;
+}
+
+.itens a {
+	color: #007bff;
+	font-weight: 500;
+}
+
+.editar a {
+	color: #FDDF4C;
+	font-weight: 500;
+}
+
+.excluir a {
+	color: #E82431;
+	font-weight: 500;
+}
+
+
+.pendente {
+	background-color: #007bff;
+	color: #DEE2E6;
+	border-radius: 5px;
+	width: 80%;
+	text-align: center;
+	padding-bottom: 3%;
+	padding-top: 2%;
+}
+
+.entregue {
+	background-color: #28a745;
+	color: #DEE2E6;
+	border-radius: 5px;
+	width: 80%;
+	text-align: center;
+	padding-bottom: 3%;
+	padding-top: 2%;
+}
+
+.cancelado {
+	background-color: #E82431;
+	color: #DEE2E6;
+	border-radius: 5px;
+	width: 80%;
+	text-align: center;
+	padding-bottom: 3%;
+	padding-top: 2%;
+}
+
+.ddpage {
+    margin-top: 2%;
+}
+
+.pagination > li > span {
+    color: #007bff;
+}
+
+.ddpage a {
+    color: #007bff;
+}
+
+.ddpage a:hover {
+    color: white !important;
+    background-color: #007bff;
+}
+
+
+@media (max-width: 500px) {
+	.aba {
+		height: 70%;
+	}
+	.title {
+		bottom: 71%;
+	}
+	.title-t h1 {
+		font-size: 1.5em;
+	}
+	.title-t h5 {
+		font-size: 1em;
+	}
+	.ddbtn {
+		margin-top: 5%;
+		width: 100%;
+		padding: 2%;
+	}
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+	.aba {
+		height: 55%;
+	}
+	.title {
+		bottom: 56%;
+	}
+	.ddfooter {
+		display: none;
+	}
+}

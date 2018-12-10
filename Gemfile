@@ -62,3 +62,6 @@ gem 'bootstrap', '~>4.1.3'
 
 #JQuery
 gem 'jquery-rails'
+
+# Gemfile for Rails 3+, Sinatra, or Merb
+gem 'will_paginate', '~> 3.1.1'
