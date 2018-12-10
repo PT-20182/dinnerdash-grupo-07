@@ -1,0 +1,21 @@
+<h1>Editar Pedidos</h1>
+
+<h4>Id: <%= @order.id %> </h4>
+<h4>Usuário: <%= User.find(@order.user_id).name %> </h4>
+<h4>Preço: <%= @order.price %> </h4>
+
+<table>
+
+<% @ordermeals.each do |meal| %>
+    <tr>
+        <td> <%= Meal.find(meal.meal_id).name %> </td>
+        <td> <%= sprintf('%.2f', Meal.find(meal.meal_id).price) %> </td>
+        <td> <%= meal.quantity %> </td>
+        <td> [+] </td>
+        <td> [-] </td>
+        <td> excluir </td>
+
+    </tr>
+<% end %>
+
+</table>
