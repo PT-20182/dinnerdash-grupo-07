@@ -16,9 +16,12 @@
 @import "bootstrap";
 @import "home";
 @import "meal_categories";
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Open+Sans|Source+Sans+Pro|Raleway');
 
- * {
+
+* {
 	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
 }
 
 #meuHr{

@@ -136,6 +136,7 @@ body{
 .subTitle{
 	margin: 0.5em 0;
 	font-size:1.25em;
+	word-wrap: normal;
 }
 
 .textSpacement{
@@ -241,6 +242,7 @@ body{
 .titleBackOffice{
 	position: absolute;
 	bottom: 10%;
+	width: 38%;
 }
 
 .rowAccount{
@@ -325,6 +327,11 @@ body{
 	font-size: 1.5em;
 }
 
+.noChangeLink:hover {
+	color: #FFC600;
+	text-decoration: none;
+}
+
 .textBox{
     width: 100%;
     font-size: 0.9em;
@@ -334,7 +341,7 @@ body{
 	border-radius: 5px;
 	border-style: outset;
 	box-sizing: border-box;
-	border:1px solid #D0D0D0;
+	border:1px solid;
 	text-shadow: none;
 }
 
