@@ -10,8 +10,8 @@
 
 				<div class="rightPart" >
 					<span class="textSpacement" style="color:orange">backoffice</span>
-					<a href="perfil.html" class="noChangeLink"><span class="textSpacement">perfil</span></a>
-					<a href="..\Pratica 2\login.html" class="noChangeLink"><span class="textSpacement">sair</span></a>
+					<span class="textSpacement">perfil</span>
+          <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink textSpacement"   %>
 				</div>
 
 			</div>
