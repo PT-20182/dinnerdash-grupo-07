@@ -90,9 +90,10 @@ body {
 }
 
 .ddsubnav-container {
-    width: 100%;
+	width: 500vw;
     background-color: #343a40;
 }
+
 
 .ddsubnav {
     list-style: none;
@@ -115,6 +116,10 @@ body {
     padding: 1em;
 }
 
+.ddsubnav-current a {
+	color: white;
+}
+
 .ddsubnav a:hover {
     color: white;
 }
@@ -130,6 +135,29 @@ body {
 
 	overflow-y: auto;
 
+}
+
+.view-title {
+	margin-top: 	-2em;
+	margin-bottom: 	-2em;
+	margin-left:	0.5em;
+}
+
+.view-title h5 {
+	color:			#5e5e5e;
+	font-weight:	bold;
+}
+
+.view-title hr {
+	margin-left:	0.8em;
+	width:			93.5em;
+	padding-bottom: 2%;
+}
+
+.view-subtitle h5 {
+	color: #9f9f9f;
+	font-weight: thin;
+	font-size: 1em;
 }
 
 .container-fluid {
@@ -163,13 +191,19 @@ label {
 	margin-bottom: 2%;
 }
 
+.col-md-6 {
+	padding-left: 9px;
+	margin-bottom: 2%;
+}
+
 .ddbtn {
-	width: 			34%;
 	font-size: 		1em;
 
 	margin-top: 	0;
 
-	padding:		0.75%;
+	padding:		3em;
+	padding-bottom: 0.6em;
+	padding-top:	0.6em;
 }
 
 .ddfooter {
@@ -177,11 +211,11 @@ label {
 	bottom: -1%;
 
 	padding-top: 1%;
-
+	height: 6%;
 
 	background-color: #f2f2f2;
 
-	font-size: 1.07em;
+	font-size: 0.9em;
 }
 
 .ddfooter .col-md {
@@ -206,7 +240,7 @@ label {
 
 table {
     border-spacing: 0;
-    margin-top: -3%;
+    margin-top: -2%;
     height: 60%;
     font-size: 1.2em;
 }
@@ -239,7 +273,7 @@ td {
 	background-color: #007bff;
 	color: #DEE2E6;
 	border-radius: 5px;
-	width: 80%;
+	width: 100%;
 	text-align: center;
 	padding-bottom: 3%;
 	padding-top: 2%;
@@ -249,7 +283,7 @@ td {
 	background-color: #28a745;
 	color: #DEE2E6;
 	border-radius: 5px;
-	width: 80%;
+	width: 100%;
 	text-align: center;
 	padding-bottom: 3%;
 	padding-top: 2%;
@@ -259,18 +293,15 @@ td {
 	background-color: #E82431;
 	color: #DEE2E6;
 	border-radius: 5px;
-	width: 80%;
+	width: 100%;
 	text-align: center;
 	padding-bottom: 3%;
 	padding-top: 2%;
 }
 
 .ddpage {
-    margin-top: 2%;
-}
-
-.pagination > li > span {
-    color: #007bff;
+	margin-top: 2%;
+	padding-bottom: 2%;
 }
 
 .ddpage a {
@@ -282,6 +313,9 @@ td {
     background-color: #007bff;
 }
 
+.form-group {
+	padding-bottom: 2%;
+}
 
 @media (max-width: 500px) {
 	.aba {
