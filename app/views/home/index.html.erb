@@ -3,20 +3,36 @@
 
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
+
         <div class="rowOptions">
+
             <div class="leftPart">
                 <%= link_to "dinnerdash", root_path, class: "noChangeLink dinnerdashLogo" %>
             </div>
+
             <div class="rightPart" >
                 <% if user_signed_in? %>
+
                     <%= link_to "perfil", edit_user_registration_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "sair", destroy_user_session_path, method: :delete, class: "noChangeLink textSpacement" %>
                 <% else %>
                     <%= link_to "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement" %>
+
+                    <% if current_user.is_admin? %>
+                        <%= link_to "backoffice", meals_path, class:"textSpacement", style:"color: orange;" %>
+                    <% end %>
+                    <a href="" class="noChangeLink"><span class="textSpacement">perfil</span></a>
+                    <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink textSpacement"   %>    
+                <% else %>
+                    <%= link_to  "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
+                    <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement"%>
+                    
+
                 <% end %>
             </div>
         </div>
+
         <div class="titleBackOffice">
             <% if user_signed_in? %>
                 <span class="bigTitle1">Bem vindo, <%= current_user.name %></span>
@@ -27,7 +43,9 @@
                 <br>
                 <span class="subTitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</span>
             <% end %>
+
         </div>
+
     </div>
     
     <div class="rowBody ">
@@ -97,6 +115,7 @@
                 <% end %>
             </div>
             <div class="grayline"></div>
+
             <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= @@preco_pedido %></span></h3>
             <span class="text-muted mb-0"class="text-muted mb-0">Para finalizar o pedido, entre com sua conta ou faça o cadastro.</span>
             <div class="login_and_sigin">
@@ -111,6 +130,7 @@
                     <div class="actions", style="width:49%;">
                         <%= link_to "fazer o meu cadastro", new_user_registration_path, class: "textBox confirmBox btn btn-success" %>
                     </div>
+
                 <% end %>
             </div>      
         </div>
@@ -122,7 +142,9 @@
                 <span > dinnerdash | todos os direitos reservados</span>
             </div>
             <div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
+              
                 <span>desenvolvido por Grupo-7</span>
+
             </div>
         </div>
     </div>	

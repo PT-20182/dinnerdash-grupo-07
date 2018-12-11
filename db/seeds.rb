@@ -35,5 +35,6 @@ Meal.create(
     
 )
 
+
 User.create(name: "Brinquedo", email: "brinquedo@email.com", password: "123456", is_admin: false)
 User.create(name: "Epaminondas", email: "epaminondas@email.com", password: "123456", is_admin: true)
