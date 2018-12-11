@@ -2,6 +2,7 @@
     <head>
     </head>
     <body>
+        <%= render partial: '/shared/headerBackOffice' %>
         <div class="div">
             <div class="div-coluna">
                 <table class="table-categoria-de-refeicao">
@@ -9,7 +10,6 @@
                         <tr class="table-categoria-de-refeicao-linha">
                             <th class="table-header-categoria-de-refeicao-nome table-categoria-de-refeicao-coluna">
                                 Nome
-                            
                             </th>
                             <th class="table-header-categoria-de-refeicao-numero table-categoria-de-refeicao-coluna">
                                 Número de Refeições
@@ -43,9 +43,10 @@
                     </tbody>
                 </table>
                 <div class="div-button-nova-meal-category">
-                    <%= link_to 'nova categoria de refeicao', new_meal_category_path, method: :get, class: 'button-nova-meal-category'%>
+                    <%= link_to 'nova categoria de refeicao', new_meal_category_path, method: :get, class: 'btn btn-outline-success'%>
                 </div>
             </div>
         </div>
+        <%= render partial: '/shared/footer'%>	
     </body>
 </html>

@@ -2,21 +2,23 @@
     <head>
     </head>
     </body>
+        <%= render partial: '/shared/headerBackOffice' %>
         <div class="div">
             <div class="div-coluna">
                 <h3>Editar categoria de refeição</h3>
                 <hr>
                 <%= form_with model: @meal_category do |form|%>
                     <p class="input-label">Nome</p>
-                    <%= form.text_field :name, placeholder: "Nome do tipo de refeição", class:'campo-text'%>
+                    <%= form.text_field :name, placeholder: "Nome do tipo de refeição", class:'campo-text form-control'%>
                     
         
                     <div class="cancel-envia">
-                        <%= form.submit 'atualizar categoria de refeição', class:'button-enviar'%>
-                        <%= link_to 'voltar', meal_categories_path, class:'button-cancelar'%>
+                        <%= form.submit 'atualizar categoria de refeição', class:'btn btn-outline-success'%>
+                        <%= link_to 'voltar', meal_categories_path, class:'btn btn-outline-dark'%>
                     </div>
                 <% end %>
             </div>
         </div>
+        <%= render partial: '/shared/footer'%>	
     </body>
 </html>

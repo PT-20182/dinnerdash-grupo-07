@@ -5,6 +5,7 @@
     display: flex;
     width: 100vw;
     justify-content: center;
+    margin-bottom: 40px
 }
 
 .div-coluna{
@@ -192,4 +193,31 @@ hr{
     width: 100%;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+.navbar-bordas{
+    width: 80vw;
+    margin: auto;
+}
+
+.home-img{
+	background-image: url(helloquence.jpg);
+	background-repeat: no-repeat;
+	background-attachment: local;
+	background-position: center;
+	background-size: cover;
+	background-color: #6b6b6b;
+	background-blend-mode: multiply;
+}
+
+.footer-back{
+    width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #E0E0E0;
+	color: #3e3e3e;
+}
+
+.voltar{
+    margin-left: 10px;
 }
