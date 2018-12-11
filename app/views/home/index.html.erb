@@ -1,14 +1,24 @@
+<% session[:cart] ||= [] %>
+<% @@preco_pedido ||= 0 %>
+
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
 
         <div class="rowOptions">
 
             <div class="leftPart">
-                <span class="dinnerdashLogo">dinnerdash</span>
+                <%= link_to "dinnerdash", root_path, class: "noChangeLink dinnerdashLogo" %>
             </div>
 
             <div class="rightPart" >
                 <% if user_signed_in? %>
+
+                    <%= link_to "perfil", edit_user_registration_path, class: "noChangeLink textSpacement" %>
+                    <%= link_to "sair", destroy_user_session_path, method: :delete, class: "noChangeLink textSpacement" %>
+                <% else %>
+                    <%= link_to "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
+                    <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement" %>
+
                     <% if current_user.is_admin? %>
                         <%= link_to "backoffice", meals_path, class:"textSpacement", style:"color: orange;" %>
                     <% end %>
@@ -18,18 +28,22 @@
                     <%= link_to  "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement"%>
                     
+
                 <% end %>
             </div>
         </div>
 
         <div class="titleBackOffice">
-            <% if user_signed_in?%>
-                <span class="bigTitle1">Bem-vindo, <%= current_user.name %></span>
+            <% if user_signed_in? %>
+                <span class="bigTitle1">Bem vindo, <%= current_user.name %></span>
+                <br>
+                <span class="subTitle">Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida.</span>
             <% else %>
                 <span class="bigTitle1">Monte o seu prato</span>
+                <br>
+                <span class="subTitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</span>
             <% end %>
-            <br>
-            <span class="subTitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</span>
+
         </div>
 
     </div>
@@ -42,31 +56,23 @@
             <% @meals.each do |meal| %>
                 <div class="card menuCard">
                     <div class="card menuItemImg">
-                        <%= image_tag  "maca.jpg", class: "card-img" %>
+                        <%= image_tag('maca.jpg', class: "card-img") %>
                         <div class="card-img-overlay d-flex align-items-end noPadding">
                                 <div class="menuItemTitle"><%= meal.name %></div>
                         </div>
                     </div>
-                    <div class="card-body" style="padding:1em;">
+                    <div class="card-body">
                         <p class="text-muted mb-0"><%= meal.description %></p>
                         <p class="priceText">R$<%= meal.price %> por porção</p>
-                        <form>
+                        <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>
                             <div class="form-group">
-                                <label class="text-gray">Quantidade</label>
-                                <select class="form-control form-control-sm ">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                </select>
-                                <button type="submit" class="textBox confirmBox margin-updown-min" >adicionar ao meu prato</button>
+                             <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+                                <%= select_tag 'qtd', options_for_select(1..10, :selected=> :qtd_meal), class: "form-control form-control-sm" %>
+                                <div class="actions">
+                                    <%= submit_tag "adicionar ao meu prato", class: "textBox confirmBox btn btn-success", qtd: :qtd_meal, id: meal.id %>
+                                </div>
                             </div>
-                        </form>
+                        <% end %>
                     </div>
                 </div>
             <% end %>
@@ -78,58 +84,53 @@
             <span class="text-muted mb-0"class="text-muted mb-0">Confira os itens pedidos antes de confirmar o pedido.</span>
             <div class="menuCategory">
                 
-                <% @meals.each do |meal| %>
-                    <div class="cartItem">
-                        <div class="cartItemImg">
+                <% session[:cart].each do |item| %>
+                    <% item.keys.each do |meal_id| %>
+                        <% meal = Meal.find(meal_id) %>
+                        <div class="cartItem">
+                            <div class="cartItemImg">
+                            </div>
+                            <div class="cartItemBody">
+                                <span class="subsubTitle"> <%= meal.name %> </span>
+                                <br>
+                                <span class="text-muted mb-0">Quantidade: <%= item[meal.id.to_s][0] %></span>
+                                <br>
+                                <span class="text-muted mb-0">Preço unitário: R$<%= meal.price %></span>
+                                <br>
+                                <span class="text-muted mb-0">Preço total: R$<%= item[meal.id.to_s][1] %></span>
+                            </div>
+                            <div class="cartItemForm">
+                                <%= form_tag(remove_path(id: meal.id), method: :put, remote: true) do %>
+                                    <div class="form-group">
+                                    <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+                                        <%= select_tag 'qtd', options_for_select(1..10, :selected=> item[meal.id.to_s][0]), class: "form-control form-control-sm" %>
+                                        <div class="actions">
+                                            <%= submit_tag "remover do meu prato", class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;", qtd: :qtd_meal, id: meal.id %>
+                                        </div>
+                                    </div>
+                                <% end %>
+                            </div>
                         </div>
-                        <div class="cartItemBody">
-                            <span class="subsubTitle"><%=meal.name%></span>
-                            <br>
-                            <span class="text-muted mb-0">Quantidade: 1</span>
-                            <br>
-                            <span class="text-muted mb-0">Preço unitário: R$<%=meal.price%></span>
-                            <br>
-                            <span class="text-muted mb-0">Preço total: R$<%=meal.price%></span>
-                        </div>
-                        <div class="cartItemForm">
-                            <form>
-                                <label class="text-gray">Quantidade</label>
-                                <select class="form-control form-control-sm ">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                </select>
-                                <button type="submit" class="textBox loginBox loginBox-red removeItemCart" style="padding: 0.3em 0;">remover</button>    
-                            </form>
-                        </div>
-                    </div>
+                    <% end %>
                 <% end %>
             </div>
             <div class="grayline"></div>
-            <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$16,00</span></h3>
-            <% if user_signed_in? %>
-                <span class="text-muted mb-0"class="text-muted mb-0">Confira os itens antes de finalizar o pedido.</span>
-            <% else %>
-                <span class="text-muted mb-0"class="text-muted mb-0">Para finalizar o pedido, entre com sua conta ou faça o cadastro.</span>
-            <% end %>
+
+            <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= @@preco_pedido %></span></h3>
+            <span class="text-muted mb-0"class="text-muted mb-0">Para finalizar o pedido, entre com sua conta ou faça o cadastro.</span>
             <div class="login_and_sigin">
-                <% if !user_signed_in? %>
-                <div style="width:49%; ">
-                    <button class="textBox loginBox">entrar com minha conta</button>
-                </div>
-                <div style="width:49%;">
-                    <button class="textBox confirmBox">fazer o meu cadastro</button>
-                </div>
+                <% if user_signed_in? %>
+                    <div class="actions", style="width:49%; ">
+                        <button class="textBox confirmBox btn btn-success">finalizar e pagar</button>
+                    </div>
                 <% else %>
-                <div style="width:49%;">
-                    <button class="textBox confirmBox">finalizar pedido</button>
-                </div>
+                    <div class="actions", style="width:49%;">
+                        <%= link_to "entrar com minha conta", new_user_session_path, class: "textBox btn btn-outline-success" %>
+                    </div>
+                    <div class="actions", style="width:49%;">
+                        <%= link_to "fazer o meu cadastro", new_user_registration_path, class: "textBox confirmBox btn btn-success" %>
+                    </div>
+
                 <% end %>
             </div>      
         </div>
@@ -141,7 +142,9 @@
                 <span > dinnerdash | todos os direitos reservados</span>
             </div>
             <div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
-                <span>desenvolvido pelo Grupo 07</span>
+              
+                <span>desenvolvido por Grupo-7</span>
+
             </div>
         </div>
     </div>	
