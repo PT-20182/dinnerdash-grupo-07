@@ -83,7 +83,7 @@
                     <td> <%= om.quantity %> </td>
                     <td> R$<%= sprintf('%.2f', om.quantity * Meal.find(om.meal_id).price).gsub('.', ',') %>
                 </tr>
-                <% i+= 1 %>
+                <% i += 1 %>
                 <% end %>
             </table>
             </div>
