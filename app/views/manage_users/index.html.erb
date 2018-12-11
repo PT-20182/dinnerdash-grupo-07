@@ -1,5 +1,5 @@
 <head>
-    <%= stylesheet_link_tag "orders_index", media: "all" %>
+    <%= stylesheet_link_tag "manage_users", media: "all" %>
 </head>
     <div class="navbar logo">
         <%= link_to('dinnerdash', root_path, class: "navbar-brand") %> 
@@ -36,45 +36,41 @@
         <div class="ddsubnav-container container-fluid">
             <ul class="ddsubnav row">
             
-                <li class="ddsubnav-current"><a href="#">Pedidos</a></li>
-                <li><a href="#">Usuários</a></li>
+                <li><a href="#">Pedidos</a></li>
+                <li class="ddsubnav-current"><a href="#">Usuários</a></li>
                 <li><a href="#">Refeições</a></li>
                 <li><a href="#">Categorias de Refeição</a></li>           
             </ul>
         </div>
+
         <div class="container-fluid">
+            <% if flash[:alert] %>
+                <div class="row smaller-gutter">
+                    <div class="col-md alert alert-danger" role="alert"><%= flash[:alert] %></div>
+                </div>
+            <% end %>
+
             <div class="row smaller-gutter">
             <table class="col">
                 <tr class="table_h">
-                    <th>Pedido de nº</th>
-                    <th>Status</th>
-                    <th>Data</th>
-                    <th>Usuário</th>
-                    <th>Preço total</th>
-                    <th>Detalhes</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Cadastrado em</th>
                     <th></th><th></th>
                 </tr>
 
-                <% @orders.each do |order| %>
+                <% @users.each do |user| %>
                 <tr>
-                    <td> <%= order.id %> </td>
                     <td>
-                        <% case order.situation_id %>
-                        <% when 1 %>
-                            <div class="pendente">pendente
-                        <% when 2 %>
-                            <div class="entregue">entregue
-                        <% when 3 %>
-                            <div class="cancelado">cancelado
+                        <% if user.is_admin %>
+                            <span class="admin-tag">admin</span>
                         <% end %>
-                        </div>
+                        <%= user.name %>
                     </td>
-                    <td> <%= order.created_at.strftime("%d/%m/%Y") %> </td>
-                    <td> <%= User.find(order.user_id).name %> </td>
-                    <td> R$<%= sprintf('%.2f', order.price).gsub('.', ',') %> </td>
-                    <td class="itens"> <%= link_to "ver itens pedidos",  order_path(order) %> </td>
-                    <td class="editar"> <%= link_to "editar", edit_order_path(order) %> </td>
-                    <td class="excluir"> <%= link_to "excluir", order, method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
+                    <td> <%= user.email %> </td>
+                    <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
+                    <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
+                    <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
                 </tr>
                 <% end %>
             </table>
@@ -84,13 +80,13 @@
                 <ul class="pagination justify-content-center">
                   <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
                     <% if @page > 0 %>
-                        <%= link_to "&laquo;".html_safe, orders_path(page: @page - 1), class: "page-link ddpgturn" %>
+                        <%= link_to "&laquo;".html_safe, manage_users_path(page: @page - 1), class: "page-link ddpgturn", style: "font-size: 1.5em;" %>
                     <% end %>
 
                   </li>
                   <li class="page-item">
                     <% if @page_continue %>
-                        <%= link_to "&raquo;".html_safe, orders_path(page: @page + 1), class: "page-link" %>
+                        <%= link_to "&raquo;".html_safe, manage_users_path(page: @page + 1), class: "page-link", style: "font-size: 1.5em;" %>
                     <% end %>
                   </li>
                 </ul>

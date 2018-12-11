@@ -36,67 +36,74 @@
         <div class="ddsubnav-container container-fluid">
             <ul class="ddsubnav row">
             
-                <li class="ddsubnav-current"><a href="#">Pedidos</a></li>
+                <li class="ddsubnav-current"><%= link_to 'Pedidos', orders_path %></li>
                 <li><a href="#">Usuários</a></li>
                 <li><a href="#">Refeições</a></li>
                 <li><a href="#">Categorias de Refeição</a></li>           
             </ul>
         </div>
+
+        <div class="container-fluid view-title">
+            <div class="row smaller-gutter">
+                <h5>
+                    Pedido <%= @order.id %>
+                </h5>
+            </div>
+
+            <div class="row smaller-gutter view-subtitle">
+                <h5 class="view-subtitle">
+                    Preço total: R$<%= sprintf('%.2f', @total).gsub('.', ',') %>
+                </h5>
+            </div>
+
+            <hr />
+        </div>
+
         <div class="container-fluid">
             <div class="row smaller-gutter">
             <table class="col">
                 <tr class="table_h">
-                    <th>Pedido de nº</th>
-                    <th>Status</th>
-                    <th>Data</th>
-                    <th>Usuário</th>
-                    <th>Preço total</th>
-                    <th>Detalhes</th>
+                    <th>Número</th>
+                    <th>Prato</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
                     <th></th><th></th>
                 </tr>
+                <% i = 1 %>
+                <% @ordermeals.each do |om| %>
+                <% @meal_category = Meal.find(om.meal_id).meal_category_id %>
 
-                <% @orders.each do |order| %>
                 <tr>
-                    <td> <%= order.id %> </td>
-                    <td>
-                        <% case order.situation_id %>
-                        <% when 1 %>
-                            <div class="pendente">pendente
-                        <% when 2 %>
-                            <div class="entregue">entregue
-                        <% when 3 %>
-                            <div class="cancelado">cancelado
-                        <% end %>
-                        </div>
-                    </td>
-                    <td> <%= order.created_at.strftime("%d/%m/%Y") %> </td>
-                    <td> <%= User.find(order.user_id).name %> </td>
-                    <td> R$<%= sprintf('%.2f', order.price).gsub('.', ',') %> </td>
-                    <td class="itens"> <%= link_to "ver itens pedidos",  order_path(order) %> </td>
-                    <td class="editar"> <%= link_to "editar", edit_order_path(order) %> </td>
-                    <td class="excluir"> <%= link_to "excluir", order, method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
+                    <td> <%= i + @offset %>
+                    <td> <%= Meal.find(om.meal_id).name %> </td>
+                    <td> <%= MealCategory.find(@meal_category).name %>
+                    <td> R$<%= sprintf('%.2f', Meal.find(om.meal_id).price).gsub('.', ',') %> </td>
+                    <td> <%= om.quantity %> </td>
+                    <td> R$<%= sprintf('%.2f', om.quantity * Meal.find(om.meal_id).price).gsub('.', ',') %>
                 </tr>
+                <% i += 1 %>
                 <% end %>
             </table>
             </div>
 
-            <nav class="ddpage">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
-                    <% if @page > 0 %>
-                        <%= link_to "&laquo;".html_safe, orders_path(page: @page - 1), class: "page-link ddpgturn" %>
-                    <% end %>
-
-                  </li>
-                  <li class="page-item">
-                    <% if @page_continue %>
-                        <%= link_to "&raquo;".html_safe, orders_path(page: @page + 1), class: "page-link" %>
-                    <% end %>
-                  </li>
-                </ul>
-            </nav>
-
         </div>
+
+        <nav class="ddpage">
+            <ul class="pagination justify-content-center">
+                <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                <% if @page > 0 %>
+                    <%= link_to "&laquo;".html_safe, order_path(page: @page - 1), class: "page-link ddpgturn" %>
+                <% end %>
+                </li>
+                <li class="page-item">
+                <% if @page_continue %>
+                    <%= link_to "&raquo;".html_safe, order_path(page: @page + 1), class: "page-link" %>
+                <% end %>
+                </li>
+            </ul>
+        </nav>
 
     </div>
 

@@ -1,3 +1,6 @@
+// Place all the styles related to the ManageUsers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
 @import url('https://fonts.googleapis.com/css?family=Amaranth|Open+Sans|Source+Sans+Pro|Raleway');
 
 * {
@@ -315,6 +318,15 @@ td {
 
 .form-group {
 	padding-bottom: 2%;
+}
+
+.admin-tag {
+    color: white;
+    background-color: #28a745;
+    padding:        0.2em;
+    padding-left:   0.5em;
+    padding-right:  0.5em;
+    border-radius:  5px;
 }
 
 @media (max-width: 500px) {

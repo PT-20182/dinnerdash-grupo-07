@@ -36,5 +36,23 @@ Meal.create(
 )
 
 
-User.create(name: "Brinquedo", email: "brinquedo@email.com", password: "123456", is_admin: false)
-User.create(name: "Epaminondas", email: "epaminondas@email.com", password: "123456", is_admin: true)
+# Somente para testes
+user = User.new(
+    email:      'owner@dinnerdash',
+    name:       'Owner',
+    is_admin:   true,
+    password:   'dinnerdash',
+    password_confirmation: 'dinnerdash'
+)
+user.save
+
+user = User.new(
+    email:      'joao@dinnerdash',
+    name:       'João',
+    is_admin:   false,
+    password:   'dinnerdash',
+    password_confirmation: 'dinnerdash'
+)
+user.save
+
+

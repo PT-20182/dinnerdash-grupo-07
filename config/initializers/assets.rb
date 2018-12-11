@@ -16,3 +16,4 @@ Rails.application.config.assets.precompile += %w( normalize.css )
 
 Rails.application.config.assets.precompile += %w( marco.css )
 Rails.application.config.assets.precompile += %w( orders_index.css )
+Rails.application.config.assets.precompile += %w( manage_users.css )
