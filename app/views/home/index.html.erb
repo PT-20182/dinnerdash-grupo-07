@@ -46,12 +46,12 @@
                     <div class="card-body">
                         <p class="text-muted mb-0"><%= meal.description %></p>
                         <p class="priceText">R$<%= meal.price %> por porção</p>
-                        <%= form_tag(method:"post", remote: true ) do %>
+                        <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>
                             <div class="form-group">
                              <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
-                                <%= select_tag 'qtd', options_for_select(1..10, 1), class: "form-control form-control-sm" %>
+                                <%= select_tag 'qtd', options_for_select(1..10, :selected=> :qtd_meal), class: "form-control form-control-sm" %>
                                 <div class="actions">
-                                    <%= link_to "adicionar ao meu prato", add_path(id: meal.id), method: :put, class: "textBox confirmBox btn btn-success" %>
+                                    <%= submit_tag "adicionar ao meu prato", class: "textBox confirmBox btn btn-success", qtd: :qtd_meal, id: meal.id %>
                                 </div>
                             </div>
                         <% end %>
@@ -82,7 +82,15 @@
                                 <span class="text-muted mb-0">Preço total: R$<%= item[meal.id.to_s][1] %></span>
                             </div>
                             <div class="cartItemForm">
-                                <%= render partial: 'carts/cart', locals: { item: item, meal: meal } %>
+                                <%= form_tag(remove_path(id: meal.id), method: :put, remote: true) do %>
+                                    <div class="form-group">
+                                    <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+                                        <%= select_tag 'qtd', options_for_select(1..10, :selected=> item[meal.id.to_s][0]), class: "form-control form-control-sm" %>
+                                        <div class="actions">
+                                            <%= submit_tag "remover do meu prato", class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;", qtd: :qtd_meal, id: meal.id %>
+                                        </div>
+                                    </div>
+                                <% end %>
                             </div>
                         </div>
                     <% end %>
