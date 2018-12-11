@@ -2,17 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .div{
-    display: flex;
+    /*display: flex;
     width: 100vw;
-    justify-content: center;
-    margin-bottom: 40px
+    justify-content: center;*/
+    margin-bottom: 40px;
 }
 
 .div-coluna{
-    width: 80vw;
+    /*width: 80vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;*/
+    position: relative;
+	padding: 0.5em 5em;
 }
 
 .table-categoria-de-refeicao{
@@ -196,8 +198,7 @@ hr{
 }
 
 .navbar-bordas{
-    width: 80vw;
-    margin: auto;
+    padding: 0em 3.5em;
 }
 
 .home-img{
@@ -220,4 +221,18 @@ hr{
 
 .voltar{
     margin-left: 10px;
+}
+
+.div{
+    margin-top: 10px;
+}
+
+.noChangeLinkBackoffice{
+    text-decoration: none;
+    color: yellow;
+}
+
+.noChangeLinkBackoffice:hover{
+    text-decoration: none;
+    color: yellow;
 }

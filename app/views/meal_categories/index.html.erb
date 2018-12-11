@@ -36,7 +36,7 @@
                                     <%= link_to 'editar', edit_meal_category_path(meal_category),  method: :get, class: 'table-categoria-de-refeicao-editar' %>
                                 </td>
                                 <td class="table-body-categoria-de-refeicao-excluir table-categoria-de-refeicao-coluna">
-                                    <%= link_to 'excluir', meal_category_path(meal_category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'table-categoria-de-refeicao-excluir' %>
+                                    <%= link_to 'excluir', meal_category_path(meal_category), method: :delete, data: { confirm: 'Deseja excluir a categoria de refeição?' }, class: 'table-categoria-de-refeicao-excluir' %>
                                 </td>
                             </tr>
                         <% end %>

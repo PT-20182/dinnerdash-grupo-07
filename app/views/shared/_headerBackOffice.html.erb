@@ -2,16 +2,19 @@
     <div class="rowBodyHeader home-img">
         <div class="rowOptions">
             <div class="leftPart">
-                <%= link_to (),class: 'noChangeLink' do%>
+                <%= link_to root_path,class: 'noChangeLink' do%>
                     <span class="dinnerdashLogo">dinnerdash</span>
                 <% end %>
             </div>
             <div class="rightPart" >
-                <%= link_to ( ),class: 'noChangeLink' do%>
-                    <span class="textSpacement">entrar</span>
+                <%= link_to ( ),class: 'noChangeLinkBackoffice' do%>
+                    <span class="textSpacement">Backoffice</span>
                 <% end %>
                 <%= link_to ( ),class: 'noChangeLink' do%>
-                    <span class="textSpacement">cadastro</span>
+                    <span class="textSpacement">perfil</span>
+                <% end %>
+                <%= link_to ( ),class: 'noChangeLink' do%>
+                    <span class="textSpacement">sair</span>
                 <% end %>
             </div>
         </div>
@@ -32,17 +35,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Pedidos<span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <%= link_to 'Pedidos', meal_categories_path, class:'nav-link' %>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Usuários</a>
+                            <%= link_to 'Usuários', meal_categories_path, class:'nav-link' %>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Refeições</a>
+                            <%= link_to 'Refeições', meal_categories_path, class:'nav-link' %>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Categoria de Refeição</a>
+                            <%= link_to 'Categoria de Refeição', meal_categories_path, class:'nav-link' %>
                         </li>
                     </ul>
                 </div>
