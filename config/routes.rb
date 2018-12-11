@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :meals
   resources :meal_categories
+
+  put '/add_item', to: "cart#add_item", as: 'add'
+  put '/remove_item', to: "cart#remove_item", as: 'remove'
+
   resources :orders   
   resources :manage_users
   devise_for :users
