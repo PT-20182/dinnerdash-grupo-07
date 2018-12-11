@@ -12,23 +12,15 @@
 
             <div class="rightPart" >
                 <% if user_signed_in? %>
-
+                    <% if current_user.is_admin? %>
+                        <%= link_to "backoffice", meals_path, class:"noChangeLink textSpacement" %>
+                    <% end %>
+                    
                     <%= link_to "perfil", edit_user_registration_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "sair", destroy_user_session_path, method: :delete, class: "noChangeLink textSpacement" %>
                 <% else %>
                     <%= link_to "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement" %>
-
-                    <% if current_user.is_admin? %>
-                        <%= link_to "backoffice", meals_path, class:"textSpacement", style:"color: orange;" %>
-                    <% end %>
-                    <a href="" class="noChangeLink"><span class="textSpacement">perfil</span></a>
-                    <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink textSpacement"   %>    
-                <% else %>
-                    <%= link_to  "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
-                    <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement"%>
-                    
-
                 <% end %>
             </div>
         </div>
