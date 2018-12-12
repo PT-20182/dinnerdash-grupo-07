@@ -4,7 +4,8 @@ class HomeController < ApplicationController
   end
 
   def checkout 
-    @order = Order.where("user_id = ?",current_user.id).last
+    @todos = Order.where("user_id = ?",current_user.id)
+    @order = @todos.last
     if @order != nil
       @orderMeals = OrderMeal.where("order_id = ?", @order.id)
     else

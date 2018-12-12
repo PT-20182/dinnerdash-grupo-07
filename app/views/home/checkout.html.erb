@@ -3,6 +3,15 @@
     </header>
     <body>
         <%= render partial:'/shared/headerCheckout' %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="
+    position: relative;">
+            <div class="navbar-bordas">
+                <strong>Pedido recebido!</strong> Aguarde na sua mesa.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="top: -10px;position: relative;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
         <div class="div">
             <div class="div-coluna">
                 <h3>
@@ -12,13 +21,13 @@
                     Aguarde o seu pedido ser entregue.
                 </p>
                 <div class="div-linha">
-                    <%= @orderMeals.each do |orderMeal| %>
-                        <%= meal = Meal.find(orderMeal.meal_id)%>
-                        <%= order = Order.find(orderMeal.order_id)%>
+                    <% @orderMeals.each do |orderMeal| %>
+                        <% meal = Meal.find(orderMeal.meal_id)%>
+                        <% order = Order.find(orderMeal.order_id)%>
                         <div class="item-carrinho">
-                            <div class="cartItemImg">
+                            <div class="item-carrinho-img">
                             </div>
-                            <div class="cartItemBody">
+                            <div class="item-carrinho-body">
                                 <span class="subsubTitle"> <%=meal.name%> </span>
                                 <br>
                                 <span class="text-muted mb-0">Quantidade: <%= orderMeal.quantity %> </span>
@@ -29,59 +38,6 @@
                             </div>
                         </div>
                     <% end %>
-                    
-                    <div class="item-carrinho">
-                        <div class="cartItemImg">
-                        </div>
-                        <div class="cartItemBody">
-                            <span class="subsubTitle"> nome </span>
-                            <br>
-                            <span class="text-muted mb-0">Quantidade: qtd </span>
-                            <br>
-                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
-                            <br>
-                            <span class="text-muted mb-0">Preço total: R$ preço</span>
-                        </div>
-                    </div>
-                    <div class="item-carrinho">
-                        <div class="cartItemImg">
-                        </div>
-                        <div class="cartItemBody">
-                            <span class="subsubTitle"> nome </span>
-                            <br>
-                            <span class="text-muted mb-0">Quantidade: qtd </span>
-                            <br>
-                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
-                            <br>
-                            <span class="text-muted mb-0">Preço total: R$ preço</span>
-                        </div>
-                    </div>
-                    <div class="item-carrinho">
-                        <div class="cartItemImg">
-                        </div>
-                        <div class="cartItemBody">
-                            <span class="subsubTitle"> nome </span>
-                            <br>
-                            <span class="text-muted mb-0">Quantidade: qtd </span>
-                            <br>
-                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
-                            <br>
-                            <span class="text-muted mb-0">Preço total: R$ preço</span>
-                        </div>
-                    </div>
-                    <div class="item-carrinho">
-                        <div class="cartItemImg">
-                        </div>
-                        <div class="cartItemBody">
-                            <span class="subsubTitle"> nome </span>
-                            <br>
-                            <span class="text-muted mb-0">Quantidade: qtd </span>
-                            <br>
-                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
-                            <br>
-                            <span class="text-muted mb-0">Preço total: R$ preço</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -99,26 +55,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                103849
-                            </td>
-                            <!--td>
-                                <span class="badge badge-primary">
-                                    pendente
-                                </span>
-                            </td-->
-                                <td class="entregue">
-                                    <div class="status">
-                                        pendente
-                                    </div>
+                        <% @todos.each do |um|%>
+                            <tr>
+                                <td>
+                                    <%= um.id %>
                                 </td>
-                            <td>30/11/2017</td>
-                            <td>R$72,00</td>
-                            <td>
-                                <%= link_to 'ver itens pedidos' %>
-                            </td>
-                        </tr>
+                                <% status = Situation.find(um.situation_id)%>
+                                <% if status.description == "Pendente"%>
+                                    <td class="entregue">
+                                        <div class="status">
+                                            Pendente
+                                        </div>
+                                    </td>
+                                <%  elsif status.description == "Entregue" %>
+                                    <td class="entregue">
+                                        <div class="status">
+                                            Entregue
+                                        </div>
+                                    </td>
+                                <%  elsif status.description == "Cancelado" %>
+                                    <td class="cancelado">
+                                        <div class="status">
+                                            Cancelado
+                                        </div>
+                                    </td>
+                                <%  end %>
+                                <td><%= um.created_at.strftime("%d/%m/%Y") %></td>
+                                <td><%= um.price %></td>
+                                <td>
+                                    <%= link_to 'ver itens pedidos' %>
+                                </td>
+                            </tr>
+                        <% end %>
                     </tbody>
                 </table>
             </div>
