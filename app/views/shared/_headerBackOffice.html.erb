@@ -1,0 +1,54 @@
+<div class="containerColumn">
+    <div class="rowBodyHeader home-img">
+        <div class="rowOptions">
+            <div class="leftPart">
+                <%= link_to root_path,class: 'noChangeLink' do%>
+                    <span class="dinnerdashLogo">dinnerdash</span>
+                <% end %>
+            </div>
+            <div class="rightPart" >
+                <%= link_to ( ),class: 'noChangeLinkBackoffice' do%>
+                    <span class="textSpacement">backoffice</span>
+                <% end %>
+                <%= link_to ( ),class: 'noChangeLink' do%>
+                    <span class="textSpacement">perfil</span>
+                <% end %>
+                <%= link_to ( ),class: 'noChangeLink' do%>
+                    <span class="textSpacement">sair</span>
+                <% end %>
+            </div>
+        </div>
+        <div class="titleBackOffice">
+            <span class="bigTitle1">
+                Backoffice
+            </span>
+            <br>
+            <span class="subTitle">
+                Garencie pedidos, refeições e mais.
+            </span>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="navbar-bordas">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <%= link_to 'Pedidos', meal_categories_path, class:'nav-link' %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Usuários', meal_categories_path, class:'nav-link' %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Refeições', meal_categories_path, class:'nav-link' %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Categoria de Refeição', meal_categories_path, class:'nav-link' %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>

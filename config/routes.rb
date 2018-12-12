@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   put '/remove_item', to: "cart#remove_item", as: 'remove'
 
   resources :orders   
+  resources :manage_users
   resources :order_meals   
   devise_for :users
 

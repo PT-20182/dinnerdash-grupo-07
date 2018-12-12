@@ -1,6 +1,7 @@
 class MealCategoriesController < ApplicationController
     def index
         @meal_categories = MealCategory.all
+        #@meal_categories = MealCategory.order(created_at: :desc).limit(10).offset(@page * 10)
     end
 
     def new
@@ -27,9 +28,6 @@ class MealCategoriesController < ApplicationController
     def update
         @meal_category = MealCategory.find(params[:id])
         @meal_category.update(meal_category_params)
-
-
-        redirect_to meal_category_path(@meal_category)
     end
 
     def destroy

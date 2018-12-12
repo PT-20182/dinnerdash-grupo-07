@@ -279,6 +279,11 @@ body{
 .noChangeLink:hover{
 	color:white;
 }
+
+.noChangeLink:hover{
+	text-decoration: none; 
+	color: white;
+}
 .rowUpdateAccount{
 	padding: 0.5em 5em;
 }

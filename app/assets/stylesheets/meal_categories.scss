@@ -2,16 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .div{
-    display: flex;
+    /*display: flex;
     width: 100vw;
-    justify-content: center;
+    justify-content: center;*/
+    margin-bottom: 40px;
 }
 
 .div-coluna{
-    width: 80vw;
+    /*width: 80vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;*/
+    position: relative;
+	padding: 0.5em 5em;
 }
 
 .table-categoria-de-refeicao{
@@ -176,6 +179,11 @@
 
 .campo-text{
     margin-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #868686;
 }
 
 .input-label{
@@ -187,4 +195,54 @@ hr{
     width: 100%;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+.navbar-bordas{
+    padding: 0em 3.5em;
+}
+
+.home-img{
+	background-image: url(helloquence.jpg);
+	background-repeat: no-repeat;
+	background-attachment: local;
+	background-position: center;
+	background-size: cover;
+	background-color: #6b6b6b;
+	background-blend-mode: multiply;
+}
+
+.footer-back{
+    width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #E0E0E0;
+	color: #3e3e3e;
+}
+
+.voltar{
+    margin-left: 10px;
+}
+
+.espaco-left-cinco{
+    margin-left: 10px;
+}
+
+
+.div{
+    margin-top: 10px;
+}
+
+.noChangeLinkBackoffice{
+    text-decoration: none;
+    color: yellow;
+}
+
+.noChangeLinkBackoffice:hover{
+    text-decoration: none;
+    color: yellow;
+}
+
+.div-colunas{
+    display: flex;
+    width: 100%;
 }
