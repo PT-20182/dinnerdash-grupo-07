@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
     ORDERS_PER_PAGE = 8
 
+
     def index
         # @orders = Order.all
         @page = (params[:page] || 0).to_i
