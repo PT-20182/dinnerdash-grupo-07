@@ -13,8 +13,46 @@ MealCategory.create(name: 'Entrada')
 MealCategory.create(name: 'Parto principal')
 MealCategory.create(name: 'Sobremesa')
 
-Meal.create(name:"Maçã", description: "Uma maçã muito deliciosa", price: "8,00")
-Meal.create(name:"Banana", description: "A preferida dos macacos", price: "4,00")
-Meal.create(name:"Abacate", description: "Faz uma vitamina deliciosa", price: "10,00")
-Meal.create(name:"Abacaxi", description: "A fruta da realeza", price: "15,00")
+Meal.create(
+    name:"Maçã", 
+    description: "Uma maçã muito deliciosa", 
+    price: "8,00"
+)
+Meal.create(
+    name:"Banana", 
+    description: "A preferida dos macacos",
+    price: "4,00"
+)
+Meal.create(
+    name:"Abacate", 
+    description: "Faz uma vitamina deliciosa",
+    price: "10,00"
+)
+Meal.create(
+    name:"Abacaxi", 
+    description: "A fruta da realeza", 
+    price: "15,00"
+    
+)
+
+
+# Somente para testes
+user = User.new(
+    email:      'owner@dinnerdash',
+    name:       'Owner',
+    is_admin:   true,
+    password:   'dinnerdash',
+    password_confirmation: 'dinnerdash'
+)
+user.save
+
+user = User.new(
+    email:      'joao@dinnerdash',
+    name:       'João',
+    is_admin:   false,
+    password:   'dinnerdash',
+    password_confirmation: 'dinnerdash'
+)
+user.save
+
 

@@ -1,0 +1,7 @@
+<%= form_tag(method:"post", remote: true, item: item, meal: meal ) do %>
+    <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+    <%= select_tag 'qtd', options_for_select(1..10, item[meal.id.to_s]), class: "form-control form-control-sm" %>
+    <div class="actions">
+        <%= link_to "remover do meu prato", remove_path(id: meal.id), method: :put, class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;" %>
+    </div>
+<% end %>

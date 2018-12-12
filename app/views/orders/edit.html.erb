@@ -1,0 +1,110 @@
+<head>
+    <%= stylesheet_link_tag "orders_index", media: "all" %>
+</head>
+    <div class="navbar logo">
+        <%= link_to('dinnerdash', root_path, class: "navbar-brand") %> 
+    </div>
+    
+    <div class="ddnavbar">
+        <div class="row no-gutters">
+            <div class="col">
+                <%= link_to 'backoffice', orders_path, class: 'nav-link backoffice' %>
+            </div>
+            <div class="col">
+                <a class="nav-link" href="#">perfil</a>
+            </div>
+            <div class="col">
+                <%= link_to('sair', destroy_user_session_path, method: :delete, class: "nav-link") %> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="title">
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+                <div class="col-md title-t">
+                    <h1>Backoffice</h1>
+                    <h5>Gerencie pedidos, refeições e mais.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="aba">
+
+        <div class="ddsubnav-container container-fluid">
+            <ul class="ddsubnav row">
+            
+                <li class="ddsubnav-current"><a href="#">Pedidos</a></li>
+                <li><a href="#">Usuários</a></li>
+                <li><a href="#">Refeições</a></li>
+                <li><a href="#">Categorias de Refeição</a></li>           
+            </ul>
+        </div>
+
+        <div class="container-fluid view-title">
+            <div class="row smaller-gutter">
+                <h5>Editar pedido</h5>
+            </div>
+            <hr />
+        </div>
+
+        <%= form_for(@order, as: @order, url: order_path(@order), html: { method: :put }) do |f| %>
+        <div class="form-group container-fluid">
+
+            <div class="row smaller-gutter">
+                <div class="col-md field">
+                    <%= f.label "Número" %>
+                    <%= f.text_field :id, autocomplete: "Número", class: "form-control", readonly: true %>
+                </div>
+
+                <div class="col-md">
+                    <%= f.label "Status" %>
+                    <%= f.collection_select :situation_id, Situation.all, :id, :description, {}, {:class => "form-control"} %>
+                </div>
+            </div>
+
+            <div class="row smaller-gutter">
+                <div class="col-md field">
+                    <%= f.label "Data" %>
+                    <%= f.text_field :created_at, value: @order.created_at.strftime("%d/%m/%Y"), class: "form-control", readonly: true %>
+                </div>
+
+                <div class="col-md field">
+                    <%= f.label "Usuário" %>
+                    <%= f.text_field :user_id, value: User.find(@order.user_id).name, class: "form-control", readonly: true %>
+                </div>
+            </div>
+
+            <div class="row smaller-gutter">
+                <div class="col-md-6 field">
+                    <%= f.label "Preço total" %>
+                    <%= f.text_field :price, value: sprintf('%.2f', @order.price).gsub('.', ','), class: "form-control", readonly: true %>
+                </div>
+            </div>
+
+            <div class="row smaller-gutter">
+                <div class="col-1">
+                    <%= f.submit "atualizar pedido", class: "btn btn-success ddbtn" %>
+                </div>
+
+                <div class="col-1 offset-sm-1">
+                    <%= link_to "voltar", orders_path, class: "btn btn-secondary ddbtn" %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+
+    <footer class="ddfooter container-fluid">
+        <div class="row smaller-gutter">
+            <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
+            <!-- Fonte não é igual -->
+            <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
+        </div>
+    </footer>
+
+    <div id="background">
+        <div class="darken-overlay"></div>
+    </div>

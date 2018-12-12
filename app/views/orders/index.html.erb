@@ -1,0 +1,113 @@
+<head>
+    <%= stylesheet_link_tag "orders_index", media: "all" %>
+</head>
+    <div class="navbar logo">
+        <%= link_to('dinnerdash', root_path, class: "navbar-brand") %> 
+    </div>
+    
+    <div class="ddnavbar">
+        <div class="row no-gutters">
+            <div class="col">
+                <%= link_to 'backoffice', orders_path, class: 'nav-link backoffice' %>
+            </div>
+            <div class="col">
+                <a class="nav-link" href="#">perfil</a>
+            </div>
+            <div class="col">
+                <%= link_to('sair', destroy_user_session_path, method: :delete, class: "nav-link") %> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="title">
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+                <div class="col-md title-t">
+                    <h1>Backoffice</h1>
+                    <h5>Gerencie pedidos, refeições e mais.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="aba">
+
+        <div class="ddsubnav-container container-fluid">
+            <ul class="ddsubnav row">
+            
+                <li class="ddsubnav-current"><a href="#">Pedidos</a></li>
+                <li><a href="#">Usuários</a></li>
+                <li><a href="#">Refeições</a></li>
+                <li><a href="#">Categorias de Refeição</a></li>           
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+            <table class="col">
+                <tr class="table_h">
+                    <th>Pedido de nº</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Usuário</th>
+                    <th>Preço total</th>
+                    <th>Detalhes</th>
+                    <th></th><th></th>
+                </tr>
+
+                <% @orders.each do |order| %>
+                <tr>
+                    <td> <%= order.id %> </td>
+                    <td>
+                        <% case order.situation_id %>
+                        <% when 1 %>
+                            <div class="pendente">pendente
+                        <% when 2 %>
+                            <div class="entregue">entregue
+                        <% when 3 %>
+                            <div class="cancelado">cancelado
+                        <% end %>
+                        </div>
+                    </td>
+                    <td> <%= order.created_at.strftime("%d/%m/%Y") %> </td>
+                    <td> <%= User.find(order.user_id).name %> </td>
+                    <td> R$<%= sprintf('%.2f', order.price).gsub('.', ',') %> </td>
+                    <td class="itens"> <%= link_to "ver itens pedidos",  order_path(order) %> </td>
+                    <td class="editar"> <%= link_to "editar", edit_order_path(order) %> </td>
+                    <td class="excluir"> <%= link_to "excluir", order, method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
+                </tr>
+                <% end %>
+            </table>
+            </div>
+
+            <nav class="ddpage">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                    <% if @page > 0 %>
+                        <%= link_to "&laquo;".html_safe, orders_path(page: @page - 1), class: "page-link ddpgturn" %>
+                    <% end %>
+
+                  </li>
+                  <li class="page-item">
+                    <% if @page_continue %>
+                        <%= link_to "&raquo;".html_safe, orders_path(page: @page + 1), class: "page-link" %>
+                    <% end %>
+                  </li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </div>
+
+    <footer class="ddfooter container-fluid">
+        <div class="row smaller-gutter">
+            <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
+            <!-- Fonte não é igual -->
+            <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
+        </div>
+    </footer>
+
+    <div id="background">
+        <div class="darken-overlay"></div>
+    </div>
