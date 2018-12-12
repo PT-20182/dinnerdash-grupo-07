@@ -76,7 +76,7 @@
                     <div class="login_and_sigin">
                         <% if user_signed_in? %>
                             <div class="actions", style="width:49%; ">
-                                <%= link_to "finalizar e pagar", order_meals_path, class: "textBox confirmBox btn btn-success" %>
+                                <%= link_to "finalizar e pagar", orders_path, method: :post, class: "textBox confirmBox btn btn-success" %>
                             </div>
                         <% else %>
                             <div class="actions", style="width:49%;">
