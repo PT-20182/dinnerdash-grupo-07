@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-    before_action :check_admin
+    # before_action :check_admin
 
     ORDERS_PER_PAGE = 8
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
             flash[:alert] = 'Carrinho vazio.'
             redirect_to root_path
         else
-
+            
             @order = Order.new(user_id: current_user.id,
                                situation_id: 1,
                                )
@@ -89,11 +89,11 @@ class OrdersController < ApplicationController
         params.require(:order).permit(:id, :situation_id)
     end
 
-    def check_admin
-        unless user_signed_in? && current_user.is_admin
-            redirect_to :root
-        end
-    end
+    # def check_admin
+    #     unless user_signed_in? && current_user.is_admin
+    #         redirect_to :root
+    #     end
+    # end
 
     def calcula_preco_total ordermeals
         total = 0
@@ -104,7 +104,7 @@ class OrdersController < ApplicationController
     end
 
     def session_cart
-        sessio[:cart] ||= [Hash.new]
+        session[:cart] ||= [Hash.new]
     end
 
 end
