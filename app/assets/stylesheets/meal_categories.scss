@@ -223,6 +223,11 @@ hr{
     margin-left: 10px;
 }
 
+.espaco-left-cinco{
+    margin-left: 10px;
+}
+
+
 .div{
     margin-top: 10px;
 }
@@ -235,4 +240,9 @@ hr{
 .noChangeLinkBackoffice:hover{
     text-decoration: none;
     color: yellow;
+}
+
+.div-colunas{
+    display: flex;
+    width: 100%;
 }

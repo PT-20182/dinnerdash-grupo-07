@@ -8,8 +8,16 @@
                 <h3>Editar categoria de refeição</h3>
                 <hr>
                 <%= form_with model: @meal_category do |form|%>
-                    <p class="input-label">Nome</p>
-                    <%= form.text_field :name, placeholder: "Nome do tipo de refeição", class:'campo-text form-control'%>
+                    <div class="div-colunas">
+                        <div style="width: inherit;">
+                            <p class="input-label">Nome</p>
+                            <%= form.text_field :name, placeholder: "Nome do tipo de refeição", class:'campo-text form-control'%>
+                        </div>
+                        <div class="espaco-left-cinco" style="width: inherit;">
+                            <p class="input-label">Cadastrado em</p>
+                            <%= form.text_field @meal_category.created_at.strftime("%d/%m/%Y"), placeholder: @meal_category.created_at.strftime("%d/%m/%Y"), class:'campo-text form-control', readonly: true %>
+                        </div>
+                    </div>
                     
         
                     <div class="cancel-envia">
