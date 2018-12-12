@@ -89,6 +89,41 @@
                         <% end %>
                     </tbody>
                 </table>
+
+                <nav aria-label="Page navigation example" style="margin-top: 10px;">
+                    <ul class="pagination">
+                        <% if @page != 0 %>
+                            <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item disabled">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                        <% if @page < @num_pages-1 %>
+                            <li class="page-item">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item  disabled">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </nav>
             </div>
         </div>
         <%= render partial:'/shared/footer' %>
