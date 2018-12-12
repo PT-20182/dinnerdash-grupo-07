@@ -13,6 +13,9 @@
           </div>
 
           <div class="column3">
+						<label>Categoria</label>
+						<%= form.select(:meal_category_id, @meal_categories.collect{|meal_category| [meal_category.name,
+						meal_category.id]}, {}, :class => "textBox") %>
           </div>
 
           <div style="width:100%; ">
@@ -27,6 +30,8 @@
           </div>
 
           <div class="column3">
+						<label>Imagem</label>
+						<%= form.file_field :image, class:"textBox", value:@meal.image %>
           </div>
 
           <div style="width:100%;">

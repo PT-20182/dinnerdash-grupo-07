@@ -1,5 +1,9 @@
-<div class="card menuItemImg">   
-    <%= image_tag  "maca.jpg", class: "card-img" %>
+<div class="card menuItemImg">
+    <% if meal.image.attached? %>
+        <%= image_tag meal.image, class: "card-img redmImg" %>
+    <% else %>   
+        <%= image_tag  "maca.jpg", class: "card-img redmImg" %>
+    <% end %>
 
     <% if meal.available == true  %>
     <div class="card-img-overlay d-flex align-items-center noPadding">
