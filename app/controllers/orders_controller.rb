@@ -36,14 +36,16 @@ class OrdersController < ApplicationController
     end
 
     def edit
+        @page = (params[:page] || 0).to_i
         @order = Order.find(params[:id])
     end
 
     def update
+        page = (params[:page] || 0).to_i
         @order = Order.find(params[:id])
         @order.update(order_params)
 
-        redirect_to orders_path
+        redirect_to orders_path(page: page)
     end
 
     def create
@@ -56,10 +58,12 @@ class OrdersController < ApplicationController
     end
 
     def destroy
+        page = (params[:page] || 0).to_i
         @order = Order.find(params[:id])
         @order.destroy
 
-        redirect_to orders_path
+        page = Order.all.count > ENTRIES_PER_PAGE * page ? page : page - 1
+        redirect_to orders_path(page: page)
     end
 
     private

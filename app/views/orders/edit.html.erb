@@ -50,7 +50,7 @@
             <hr />
         </div>
 
-        <%= form_for(@order, as: @order, url: order_path(@order), html: { method: :put }) do |f| %>
+        <%= form_for(@order, as: @order, url: order_path(@order, page: @page), html: { method: :put }) do |f| %>
         <div class="form-group container-fluid">
 
             <div class="row smaller-gutter">

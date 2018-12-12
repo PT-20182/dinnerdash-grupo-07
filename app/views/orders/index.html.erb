@@ -73,8 +73,8 @@
                     <td> <%= User.find(order.user_id).name %> </td>
                     <td> R$<%= sprintf('%.2f', order.price).gsub('.', ',') %> </td>
                     <td class="itens"> <%= link_to "ver itens pedidos",  order_path(order) %> </td>
-                    <td class="editar"> <%= link_to "editar", edit_order_path(order) %> </td>
-                    <td class="excluir"> <%= link_to "excluir", order, method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
+                    <td class="editar"> <%= link_to "editar", edit_order_path(order, page: @page) %> </td>
+                    <td class="excluir"> <%= link_to "excluir", order_path(order, page: @page), method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
                 </tr>
                 <% end %>
             </table>

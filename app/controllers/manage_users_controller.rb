@@ -49,6 +49,8 @@ class ManageUsersController < ApplicationController
         else
             flash.alert = 'Não foi possível excluir usuário.'
         end
+
+        page = User.all.count > ENTRIES_PER_PAGE * page ? page : page - 1
         redirect_to manage_users_path(page: page)
     end
 
