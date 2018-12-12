@@ -47,13 +47,8 @@
 
             <% @meals.each do |meal| %>
                 <div class="card menuCard">
-                    <div class="card menuItemImg">
-                        <%= image_tag('maca.jpg', class: "card-img") %>
-                        <div class="card-img-overlay d-flex align-items-end noPadding">
-                                <div class="menuItemTitle"><%= meal.name %></div>
-                        </div>
-                    </div>
-                    <div class="card-body">
+                    <%= render  "card_image", meal: meal %>
+                    <div class="card-body" style="padding:0.7em;">
                         <p class="text-muted mb-0"><%= meal.description %></p>
                         <p class="priceText">R$<%= number_with_precision(meal.price, precision: 2) %> por porção</p>
                         <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>

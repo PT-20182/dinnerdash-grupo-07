@@ -1,35 +1,6 @@
 <div class="containerColumn"> 
 
-		<div class="rowBodyHeader officeImg">
-
-			<div class="rowOptions">
-
-				<div class="leftPart">
-					<span class="dinnerdashLogo">dinnerdash</span>
-				</div>
-
-				<div class="rightPart" >
-					<span class="textSpacement" style="color:orange">backoffice</span>
-					<span class="textSpacement">perfil</span>
-          <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink textSpacement"   %>
-				</div>
-
-			</div>
-
-			<div class="titleBackOffice">
-				<span class="bigTitle1">Backoffice</span>
-				<br>
-				<span class="subTitle">Gerencie pedidos, refeições e mais.</span>
-			</div>
-
-		</div>
-    
-		<div class="navBar">
-			<span class="navOption textSpacement notSelected">Pedidos</span>
-			<span class="navOption textSpacement notSelected">Usuários</span>
-			<span class="navOption textSpacement ">Refeições</span>
-			<span class="navOption textSpacement notSelected">Categorias de Refeição</span>
-		</div>
+		<%= render  "backoffice_header" %>
 
 		<div class="rowBody ">
 
@@ -39,20 +10,7 @@
 
           <div class="card menuCard">
 
-            <div class="card menuItemImg">
-              
-              <%= image_tag  "maca.jpg", class: "card-img" %>
-
-              <% if meal.available == false  %>
-                <div class="card-img-overlay d-flex align-items-center noPadding">
-                  <div class="notAvailable">Refeição indisponível</div>
-                </div>
-              <% end %>
-
-              <div class="card-img-overlay d-flex align-items-end noPadding">
-                <div class="menuItemTitle"><%= meal.name %></div>
-              </div>
-            </div>
+            <%= render  "card_image", meal: meal %>
 
             <div class="card-body" style="padding:0.7em;">
               <p class="text-muted mb-0"><%= meal.description %></p>

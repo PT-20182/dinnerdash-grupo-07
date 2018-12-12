@@ -1,0 +1,13 @@
+<div class="card menuItemImg">   
+    <%= image_tag  "maca.jpg", class: "card-img" %>
+
+    <% if meal.available == true  %>
+    <div class="card-img-overlay d-flex align-items-center noPadding">
+        <div class="notAvailable">Refeição indisponível</div>
+    </div>
+    <% end %>
+
+    <div class="card-img-overlay d-flex align-items-end noPadding">
+    <div class="menuItemTitle"><%= meal.name %></div>
+    </div>
+</div>
