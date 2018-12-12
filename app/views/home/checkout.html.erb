@@ -1,0 +1,128 @@
+<html>
+    <header>
+    </header>
+    <body>
+        <%= render partial:'/shared/headerCheckout' %>
+        <div class="div">
+            <div class="div-coluna">
+                <h3>
+                    Seu último pedido:
+                </h3>
+                <p>
+                    Aguarde o seu pedido ser entregue.
+                </p>
+                <div class="div-linha">
+                    <%= @orderMeals.each do |orderMeal| %>
+                        <%= meal = Meal.find(orderMeal.meal_id)%>
+                        <%= order = Order.find(orderMeal.order_id)%>
+                        <div class="item-carrinho">
+                            <div class="cartItemImg">
+                            </div>
+                            <div class="cartItemBody">
+                                <span class="subsubTitle"> <%=meal.name%> </span>
+                                <br>
+                                <span class="text-muted mb-0">Quantidade: <%= orderMeal.quantity %> </span>
+                                <br>
+                                <span class="text-muted mb-0">Preço unitário: R$<%= meal.price%> </span>
+                                <br>
+                                <span class="text-muted mb-0">Preço total: R$<%= %></span>
+                            </div>
+                        </div>
+                    <% end %>
+                    
+                    <div class="item-carrinho">
+                        <div class="cartItemImg">
+                        </div>
+                        <div class="cartItemBody">
+                            <span class="subsubTitle"> nome </span>
+                            <br>
+                            <span class="text-muted mb-0">Quantidade: qtd </span>
+                            <br>
+                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
+                            <br>
+                            <span class="text-muted mb-0">Preço total: R$ preço</span>
+                        </div>
+                    </div>
+                    <div class="item-carrinho">
+                        <div class="cartItemImg">
+                        </div>
+                        <div class="cartItemBody">
+                            <span class="subsubTitle"> nome </span>
+                            <br>
+                            <span class="text-muted mb-0">Quantidade: qtd </span>
+                            <br>
+                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
+                            <br>
+                            <span class="text-muted mb-0">Preço total: R$ preço</span>
+                        </div>
+                    </div>
+                    <div class="item-carrinho">
+                        <div class="cartItemImg">
+                        </div>
+                        <div class="cartItemBody">
+                            <span class="subsubTitle"> nome </span>
+                            <br>
+                            <span class="text-muted mb-0">Quantidade: qtd </span>
+                            <br>
+                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
+                            <br>
+                            <span class="text-muted mb-0">Preço total: R$ preço</span>
+                        </div>
+                    </div>
+                    <div class="item-carrinho">
+                        <div class="cartItemImg">
+                        </div>
+                        <div class="cartItemBody">
+                            <span class="subsubTitle"> nome </span>
+                            <br>
+                            <span class="text-muted mb-0">Quantidade: qtd </span>
+                            <br>
+                            <span class="text-muted mb-0">Preço unitário: R$ preço</span>
+                            <br>
+                            <span class="text-muted mb-0">Preço total: R$ preço</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="div">
+            <div class="div-coluna">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">pedido de nº</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Preço total</th>
+                            <th scope="col">Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                103849
+                            </td>
+                            <!--td>
+                                <span class="badge badge-primary">
+                                    pendente
+                                </span>
+                            </td-->
+                                <td class="entregue">
+                                    <div class="status">
+                                        pendente
+                                    </div>
+                                </td>
+                            <td>30/11/2017</td>
+                            <td>R$72,00</td>
+                            <td>
+                                <%= link_to 'ver itens pedidos' %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <%= render partial:'/shared/footer' %>
+    </body>
+</html>

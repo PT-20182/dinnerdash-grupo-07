@@ -1,0 +1,46 @@
+.checkout-img{
+	background-image: url(elli-o-43178.jpg);
+	background-repeat: no-repeat;
+	background-attachment: local;
+	background-position: center;
+	background-size: cover;
+	background-color: #6b6b6b;
+	background-blend-mode: multiply;
+}
+
+.status{
+    margin: 5px 0px 5px 0px;
+    padding: 0px auto;
+    color: #DEE2E6;
+    text-align: center;
+    /*padding-*/
+}
+
+.entregue > .status{
+    background-color: #28A745;
+    border-radius: 5px;
+}
+
+.cancelado > .status{
+    background-color: #E82431;
+    border-radius: 5px;
+}
+
+.pendente > .status{
+    background-color: #007BFF;
+    border-radius: 5px;
+}
+
+.div-linha{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+}
+
+.item-carrinho{
+	display: flex;
+    margin: 0.5em 0.5em;
+    width: 30.0%;
+    height: 115px;
+    border: 1px solid rgba(0,0,0,.125);
+}

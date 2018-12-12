@@ -47,6 +47,11 @@
                 </div>
             </div>
         </div>
-        <%= render partial: '/shared/footer'%>	
+        <%= render partial: '/shared/footer'%>
+        <script>
+            $(document).ready( function () {
+                $('.table-de-categoria-refeicao').DataTable();
+            } );
+        </script>	
     </body>
 </html>
