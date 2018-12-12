@@ -3,7 +3,7 @@
     <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
         <%= select_tag 'qtd', options_for_select(1..10, :selected=> item[meal.id.to_s][0]), class: "form-control form-control-sm" %>
         <div class="actions">
-            <%= submit_tag "remover do meu prato", class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;", qtd: :qtd_meal, id: meal.id %>
+            <%= submit_tag "remover do prato", class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;", qtd: :qtd_meal, id: meal.id %>
         </div>
     </div>
 <% end %>
