@@ -13,12 +13,14 @@ MealCategory.create(name: 'Entrada')
 MealCategory.create(name: 'Parto principal')
 MealCategory.create(name: 'Sobremesa')
 
-Meal.create(
+a = Meal.create(
     name:"Maçã", 
     description: "Uma maçã muito deliciosa", 
     available: true,
+
     price: 8.00
 )
+puts "MEAL criada com id: #{a.id}"
 Meal.create(
     name:"Banana", 
     description: "A preferida dos macacos",
@@ -29,14 +31,48 @@ Meal.create(
     name:"Abacate", 
     description: "Faz uma vitamina deliciosa",
     available: true,
+
     price: 10.00
 )
 Meal.create(
     name:"Abacaxi", 
     description: "A fruta da realeza", 
     available: true,
+
     price: 15.00
     
+)
+
+user = User.create(
+    email:      'joao@dinnerdash',
+    name:       'João',
+    is_admin:   false,
+    password:   'dinnerdash',
+    password_confirmation: 'dinnerdash'
+)
+
+b = Order.create(
+    price: 15.00,
+    user_id: user.id,
+    situation_id: 1
+)
+
+OrderMeal.create(
+    quantity: 45,
+    order_id: b.id,
+    meal_id: a.id,
+)
+
+Situation.create(
+    description: "Pendente"
+)
+
+Situation.create(
+    description: "Entregue"
+)
+
+Situation.create(
+    description: "Cancelado"
 )
 
 
