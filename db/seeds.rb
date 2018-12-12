@@ -16,22 +16,29 @@ MealCategory.create(name: 'Sobremesa')
 a = Meal.create(
     name:"Maçã", 
     description: "Uma maçã muito deliciosa", 
+    available: true,
+
     price: 8.00
 )
 puts "MEAL criada com id: #{a.id}"
 Meal.create(
     name:"Banana", 
     description: "A preferida dos macacos",
+    available: true,
     price: 4.00
 )
 Meal.create(
     name:"Abacate", 
     description: "Faz uma vitamina deliciosa",
+    available: true,
+
     price: 10.00
 )
 Meal.create(
     name:"Abacaxi", 
     description: "A fruta da realeza", 
+    available: true,
+
     price: 15.00
     
 )
@@ -57,11 +64,16 @@ OrderMeal.create(
 )
 
 Situation.create(
-    description: "jnjkdvjsdjvjvkdsjnsdvjknsdkjvsdjsdvjksdnvsn"
+    description: "Pendente"
 )
 
+Situation.create(
+    description: "Entregue"
+)
 
-
+Situation.create(
+    description: "Cancelado"
+)
 
 
 # Somente para testes
