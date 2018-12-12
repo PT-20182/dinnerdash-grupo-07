@@ -1,6 +1,3 @@
-<% session[:cart] ||= [] %>
-<% @@preco_pedido ||= 0 %>
-
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
 
@@ -29,7 +26,7 @@
             <% if user_signed_in? %>
                 <span class="bigTitle1">Bem vindo, <%= current_user.name %></span>
                 <br>
-                <span class="subTitle">Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida.</span>
+                <span class="subTitle">Neste espaço você pode finalizar seu pedido.</span>
             <% else %>
                 <span class="bigTitle1">Monte o seu prato</span>
                 <br>
@@ -39,41 +36,11 @@
         </div>
 
     </div>
-    
     <div class="rowBody ">
         <div class="rowBodyDiv">
-            <h2 class="text-gray">Frutas</h2>
-            <div class="menuCategory">
+            <h3 class="text-gray">O seu pedido:</h3>
 
-            <% @meals.each do |meal| %>
-                <div class="card menuCard">
-                    <div class="card menuItemImg">
-                        <%= image_tag('maca.jpg', class: "card-img") %>
-                        <div class="card-img-overlay d-flex align-items-end noPadding">
-                                <div class="menuItemTitle"><%= meal.name %></div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted mb-0"><%= meal.description %></p>
-                        <p class="priceText">R$<%= number_with_precision(meal.price, precision: 2) %> por porção</p>
-                        <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>
-                            <div class="form-group">
-                             <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
-                                <%= select_tag 'qtd', options_for_select(1..10, :selected=> :qtd_meal), class: "form-control form-control-sm" %>
-                                <div class="actions">
-                                    <%= submit_tag "adicionar ao meu prato", class: "textBox confirmBox btn btn-success", qtd: :qtd_meal, id: meal.id %>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>
-                </div>
-            <% end %>
-            </div>
-        </div>
-        <div class="grayline"></div>
-        <div class="rowBodyDiv">
-            <h2 class="text-gray">Finalizou seu prato?</h2>
-            <span class="text-muted mb-0"class="text-muted mb-0">Confira os itens pedidos antes de confirmar o pedido.</span>
+            <span class="text-muted mb-0">Confira os itens pedidos antes de finalizar o pedido.</span>
             <div class="menuCategory">
                 
                 <% session[:cart].each do |item| %>
@@ -99,24 +66,29 @@
                 <% end %>
             </div>
             <div class="grayline"></div>
-
-            <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@@preco_pedido, precision: 2) %></span></h3>
-            <span class="text-muted mb-0"class="text-muted mb-0">Para finalizar o pedido, entre com sua conta ou faça o cadastro.</span>
-            <div class="login_and_sigin">
-                <% if user_signed_in? %>
-                    <div class="actions", style="width:49%; ">
-                        <%= link_to "finalizar e pagar", order_meals_path, class: "textBox confirmBox btn btn-success" %>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <h3 class="text-gray">Esqueceu algo?<span style="color:#28a745;"></span></h3>
+                    <span class="text-muted mb-0"><%= link_to "Clique aqui", :back %> para retornar ao nosso menu</span>
+                </div>
+                <div>
+                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@@preco_pedido, precision: 2) %></span></h3>
+                    <div class="login_and_sigin">
+                        <% if user_signed_in? %>
+                            <div class="actions", style="width:49%; ">
+                                <%= link_to "finalizar e pagar", order_meals_path, class: "textBox confirmBox btn btn-success" %>
+                            </div>
+                        <% else %>
+                            <div class="actions", style="width:49%;">
+                                <%= link_to "entrar com minha conta", new_user_session_path, class: "textBox btn btn-outline-success" %>
+                            </div>
+                            <div class="actions", style="width:49%;">
+                                <%= link_to "fazer o meu cadastro", new_user_registration_path, class: "textBox confirmBox btn btn-success" %>
+                            </div>
+                        <% end %>
                     </div>
-                <% else %>
-                    <div class="actions", style="width:49%;">
-                        <%= link_to "entrar com minha conta", new_user_session_path, class: "textBox btn btn-outline-success" %>
-                    </div>
-                    <div class="actions", style="width:49%;">
-                        <%= link_to "fazer o meu cadastro", new_user_registration_path, class: "textBox confirmBox btn btn-success" %>
-                    </div>
-
-                <% end %>
-            </div>      
+                </div>
+            </div>     
         </div>
     </div>
 
@@ -126,11 +98,10 @@
                 <span > dinnerdash | todos os direitos reservados</span>
             </div>
             <div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
-              
+                
                 <span>desenvolvido por Grupo-7</span>
 
             </div>
         </div>
-    </div>	
+    </div>
 </div>
-

@@ -43,7 +43,7 @@
               
               <%= image_tag  "maca.jpg", class: "card-img" %>
 
-              <% if meal.available %>
+              <% if meal.available == false  %>
                 <div class="card-img-overlay d-flex align-items-center noPadding">
                   <div class="notAvailable">Refeição indisponível</div>
                 </div>
