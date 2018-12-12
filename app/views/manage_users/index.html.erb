@@ -51,28 +51,31 @@
             <% end %>
 
             <div class="row smaller-gutter">
-            <table class="col">
-                <tr class="table_h">
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Cadastrado em</th>
-                    <th></th><th></th>
-                </tr>
-
-                <% @users.each do |user| %>
-                <tr>
-                    <td>
-                        <% if user.is_admin %>
-                            <span class="admin-tag">admin</span>
-                        <% end %>
-                        <%= user.name %>
-                    </td>
-                    <td> <%= user.email %> </td>
-                    <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
-                    <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
-                    <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
-                </tr>
-                <% end %>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Cadastrado em</th>
+                        <th scope="col" colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td>
+                            <% if user.is_admin %>
+                                <span class="admin-tag">admin</span>
+                            <% end %>
+                            <%= user.name %>
+                        </td>
+                        <td> <%= user.email %> </td>
+                        <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
+                        <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
+                        <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
+                    </tr>
+                    <% end %>
+                </tbody>
             </table>
             </div>
 

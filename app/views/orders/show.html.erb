@@ -61,30 +61,38 @@
 
         <div class="container-fluid">
             <div class="row smaller-gutter">
-            <table class="col">
-                <tr class="table_h">
-                    <th>Número</th>
-                    <th>Prato</th>
-                    <th>Categoria</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Subtotal</th>
-                    <th></th><th></th>
-                </tr>
-                <% i = 1 %>
-                <% @ordermeals.each do |om| %>
-                <% @meal_category = Meal.find(om.meal_id).meal_category_id %>
-
-                <tr>
-                    <td> <%= i + @offset %>
-                    <td> <%= Meal.find(om.meal_id).name %> </td>
-                    <td> <%= MealCategory.find(@meal_category).name %>
-                    <td> R$<%= sprintf('%.2f', Meal.find(om.meal_id).price).gsub('.', ',') %> </td>
-                    <td> <%= om.quantity %> </td>
-                    <td> R$<%= sprintf('%.2f', om.quantity * Meal.find(om.meal_id).price).gsub('.', ',') %>
-                </tr>
-                <% i += 1 %>
-                <% end %>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Número</th>
+                        <th scope="col">Prato</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% i = 1 %>
+                    <% @ordermeals.each do |om| %>
+                    <% meal_category = Meal.find(om.meal_id).meal_category_id %>
+                    <tr>
+                        <td> <%= i + @offset %>
+                        <td> <%= Meal.find(om.meal_id).name %> </td>
+                        <td>
+                            <% if meal_category != nil %>
+                                <%= MealCategory.find(meal_category).name %>
+                            <% else %>
+                                Sem categoria
+                            <% end %>
+                        </td>
+                        <td> R$<%= sprintf('%.2f', Meal.find(om.meal_id).price).gsub('.', ',') %> </td>
+                        <td> <%= om.quantity %> </td>
+                        <td> R$<%= sprintf('%.2f', om.quantity * Meal.find(om.meal_id).price).gsub('.', ',') %>
+                    </tr>
+                    <% i += 1 %>
+                    <% end %>
+                </tbody>
             </table>
             </div>
 

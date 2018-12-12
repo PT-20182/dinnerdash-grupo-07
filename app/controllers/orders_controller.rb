@@ -69,6 +69,7 @@ class OrdersController < ApplicationController
 
             total = calcula_preco_total(ordermeals)
 
+            @order.update(price: total)
 
             # session_cart = [{"1" => [5, 60.0], "2" => [1, 8.0]}]
 
