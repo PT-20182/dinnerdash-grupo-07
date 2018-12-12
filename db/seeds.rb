@@ -16,22 +16,26 @@ MealCategory.create(name: 'Sobremesa')
 Meal.create(
     name:"Maçã", 
     description: "Uma maçã muito deliciosa", 
-    price: "8,00"
+    available: true,
+    price: 8.00
 )
 Meal.create(
     name:"Banana", 
     description: "A preferida dos macacos",
-    price: "4,00"
+    available: true,
+    price: 4.00
 )
 Meal.create(
     name:"Abacate", 
     description: "Faz uma vitamina deliciosa",
-    price: "10,00"
+    available: true,
+    price: 10.00
 )
 Meal.create(
     name:"Abacaxi", 
     description: "A fruta da realeza", 
-    price: "15,00"
+    available: true,
+    price: 15.00
     
 )
 
