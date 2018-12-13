@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   PRODUCTS_SIZE = 10
   def index
     @meals = Meal.all
+    @meal_categories = MealCategory.all
   end
 
   def checkout 

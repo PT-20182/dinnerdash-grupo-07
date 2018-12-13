@@ -1,0 +1,12 @@
+<div class="cartItemImg">
+    <%= image_tag  meal.image, class: "redmImg" %>
+</div>
+<div class="cartItemBody">
+    <span class="subsubTitle"> <%= meal.name %> </span>
+    <br>
+    <span class="text-muted mb-0">Quantidade: <%= item[meal.id.to_s][0] %></span>
+    <br>
+    <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %></span>
+    <br>
+    <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(item[meal.id.to_s][1], precision: 2) %></span>
+</div>

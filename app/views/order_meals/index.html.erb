@@ -36,34 +36,14 @@
         </div>
 
     </div>
+
     <div class="rowBody ">
         <div class="rowBodyDiv">
             <h3 class="text-gray">O seu pedido:</h3>
 
             <span class="text-muted mb-0">Confira os itens pedidos antes de finalizar o pedido.</span>
             <div class="menuCategory">
-                
-                <% session[:cart].each do |item| %>
-                    <% item.keys.each do |meal_id| %>
-                        <% meal = Meal.find(meal_id) %>
-                        <div id="cartItm" class="cartItem">
-                            <div class="cartItemImg">
-                            </div>
-                            <div class="cartItemBody">
-                                <span class="subsubTitle"> <%= meal.name %> </span>
-                                <br>
-                                <span class="text-muted mb-0">Quantidade: <%= item[meal.id.to_s][0] %></span>
-                                <br>
-                                <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %></span>
-                                <br>
-                                <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(item[meal.id.to_s][1], precision: 2) %></span>
-                            </div>
-                            <div class="cartItemForm">
-                                <%= render partial: "carts/cart", locals: {item: item, meal: meal} %>
-                            </div>
-                        </div>
-                    <% end %>
-                <% end %>
+                <%= render "carts/cart" %>
             </div>
             <div class="grayline"></div>
             <div style="display: flex; justify-content: space-between;">
@@ -90,18 +70,41 @@
                 </div>
             </div>     
         </div>
-    </div>
 
-    <div class="navBar footer">
-        <div class="fullLength">
-            <div class="leftPart">
-                <span > dinnerdash | todos os direitos reservados</span>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#order_meal">
+        Detalhes do pedido
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="order_meal" tabindex="-1" role="dialog" aria-labelledby="order" aria-hidden="true",>
+        <div class="modal-dialog modal-lg" role="document" style="max-width:700px; min-height:0; flex-wrap: wrap;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Detalhes do pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
-                
-                <span>desenvolvido por Grupo-7</span>
-
+            <div class="modal-body" id="order">
+                <div class="wrapflex">
+                    <% session[:cart].each do |item| %>
+                        <% item.keys.each do |meal_id| %>
+                            <% meal = Meal.find(meal_id) %>
+                            <div id="cartItm" class="cartItem" style="max-width:308px;" >
+                                <%= render partial: "carts/cart_info", locals:{meal: meal, item: item} %>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+            </div>
             </div>
         </div>
+        </div>
     </div>
+
+    <%= render  "footer" %>
 </div>
