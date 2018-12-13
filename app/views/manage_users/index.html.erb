@@ -1,80 +1,45 @@
 <head>
     <%= stylesheet_link_tag "manage_users", media: "all" %>
 </head>
-    <div class="navbar logo">
-        <%= link_to('dinnerdash', root_path, class: "navbar-brand") %> 
-    </div>
-    
-    <div class="ddnavbar">
-        <div class="row no-gutters">
-            <div class="col">
-                <%= link_to 'backoffice', orders_path, class: 'nav-link backoffice' %>
-            </div>
-            <div class="col">
-                <a class="nav-link" href="#">perfil</a>
-            </div>
-            <div class="col">
-                <%= link_to('sair', destroy_user_session_path, method: :delete, class: "nav-link") %> 
-            </div>
-        </div>
-    </div>
-    
-    <div class="title">
-        <div class="container-fluid">
-            <div class="row smaller-gutter">
-                <div class="col-md title-t">
-                    <h1>Backoffice</h1>
-                    <h5>Gerencie pedidos, refeições e mais.</h5>
-                </div>
-            </div>
-        </div>
-    </div>
 
+<div class="containerColumn">
 
-    <div class="aba">
+    <%= render "backoffice_header" %>
 
-        <div class="ddsubnav-container container-fluid">
-            <ul class="ddsubnav row">
-            
-                <li><a href="#">Pedidos</a></li>
-                <li class="ddsubnav-current"><a href="#">Usuários</a></li>
-                <li><a href="#">Refeições</a></li>
-                <li><a href="#">Categorias de Refeição</a></li>           
-            </ul>
-        </div>
+    <div class="rowBody">
 
-        <div class="container-fluid">
+        <div class="rowMeals">
             <% if flash[:alert] %>
-                <div class="row smaller-gutter">
+                <div class="row">
                     <div class="col-md alert alert-danger" role="alert"><%= flash[:alert] %></div>
                 </div>
             <% end %>
 
-            <div class="row smaller-gutter">
-            <table class="col">
-                <tr class="table_h">
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Cadastrado em</th>
-                    <th></th><th></th>
-                </tr>
+            
+                <table class="col">
+                    <tr class="table_h">
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Cadastrado em</th>
+                        <th></th><th></th>
+                    </tr>
 
-                <% @users.each do |user| %>
-                <tr>
-                    <td>
-                        <% if user.is_admin %>
-                            <span class="admin-tag">admin</span>
-                        <% end %>
-                        <%= user.name %>
-                    </td>
-                    <td> <%= user.email %> </td>
-                    <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
-                    <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
-                    <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
-                </tr>
-                <% end %>
-            </table>
-            </div>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td>
+                            <% if user.is_admin %>
+                                <span class="admin-tag">admin</span>
+                            <% end %>
+                            <%= user.name %>
+                        </td>
+                        <td> <%= user.email %> </td>
+                        <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
+                        <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
+                        <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
+                    </tr>
+                    <% end %>
+                </table>
+            
 
             <nav class="ddpage">
                 <ul class="pagination justify-content-center">
@@ -96,14 +61,6 @@
 
     </div>
 
-    <footer class="ddfooter container-fluid">
-        <div class="row smaller-gutter">
-            <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
-            <!-- Fonte não é igual -->
-            <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
-        </div>
-    </footer>
+    <%= render  "footer" %>
 
-    <div id="background">
-        <div class="darken-overlay"></div>
-    </div>
+</div>

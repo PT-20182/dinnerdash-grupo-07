@@ -8,7 +8,7 @@
 
         <div class="rightPart" >
             <span class="textSpacement" style="color:orange">backoffice</span>
-            <span class="textSpacement">perfil</span>
+            <%= link_to"perfil", edit_user_registration_path, class:"noChangeLink textSpacement" %>
             <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink
             textSpacement" %>
         </div>
