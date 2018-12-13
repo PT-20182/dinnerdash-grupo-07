@@ -72,11 +72,11 @@
                     <span class="text-muted mb-0"><%= link_to "Clique aqui", :back %> para retornar ao nosso menu</span>
                 </div>
                 <div>
-                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@@preco_pedido, precision: 2) %></span></h3>
+                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@total, precision: 2) %></span></h3>
                     <div class="login_and_sigin">
                         <% if user_signed_in? %>
                             <div class="actions", style="width:49%; ">
-                                <%= link_to "finalizar e pagar", orders_path, method: :post, class: "textBox confirmBox btn btn-success" %>
+                                <%= link_to "finalizar e pagar", checkout_path, class: "textBox confirmBox btn btn-success" %>
                             </div>
                         <% else %>
                             <div class="actions", style="width:49%;">
