@@ -1,0 +1,21 @@
+<% session[:cart].each do |item| %>
+    <% item.keys.each do |meal_id| %>
+        <% meal = Meal.find(meal_id) %>
+        <div id="cartItm" class="cartItem">
+            <%= render partial: "carts/cart_info", locals:{meal: meal, item: item} %>
+            <div class="cartItemForm">
+                <%= form_tag(remove_path(id: meal.id), method: :put, remote: true, item: item, meal: meal) do %>
+                    <div class="form-group">
+                    <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+                        <%= select_tag 'qtd', options_for_select(1..10, :selected=> item[meal.id.to_s][0]), class: "form-control form-control-sm" %>
+                        <div class="actions">
+                            <%= submit_tag "remover do prato", class: "textBox removeItemCart btn btn-outline-danger", style: "padding: 0.3em 0;", qtd: :qtd_meal, id: meal.id %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+

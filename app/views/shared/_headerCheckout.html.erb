@@ -1,0 +1,34 @@
+<div class="containerColumn">
+    <div class="rowBodyHeader checkout-img">
+        <div class="rowOptions">
+            <div class="leftPart">
+                <%= link_to root_path,class: 'noChangeLink' do%>
+                    <span class="dinnerdashLogo">dinnerdash</span>
+                <% end %>
+            </div>
+            <div class="rightPart" >
+                <!--%= link_to ( ),class: 'noChangeLinkBackoffice' do%-->
+                    <!--span class="textSpacement">backoffice</span-->
+                <!--% end %-->
+                <% if current_user.is_admin? %>
+                    <%= link_to "backoffice", meals_path, class:"noChangeLink textSpacement" %>
+                <% end %>
+                <%= link_to edit_user_registration_path,class: 'noChangeLink' do%>
+                    <span class="textSpacement">perfil</span>
+                <% end %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'noChangeLink' do%>
+                    <span class="textSpacement">sair</span>
+                <% end %>
+            </div>
+        </div>
+        <div class="titleBackOffice">
+            <span class="bigTitle1">
+                Bem-vindo, <%= current_user.name %>
+            </span>
+            <br>
+            <span class="subTitle">
+                Neste espaço você pode finalizar o seu pedido.
+            </span>
+        </div>
+    </div>
+</div>

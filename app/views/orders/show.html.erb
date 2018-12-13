@@ -1,0 +1,85 @@
+<head>
+    <%= stylesheet_link_tag "orders_index", media: "all" %>
+</head>
+
+<div class="containerColumn">    
+
+    <%= render  "backoffice_header" %>
+
+    <div class="rowBody">
+
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+                <h5>
+                    Pedido <%= @order.id %>
+                </h5>
+            </div>
+
+            <div class="row smaller-gutter view-subtitle">
+                <h5 class="view-subtitle">
+                    Preço total: R$<%= sprintf('%.2f', @total).gsub('.', ',') %>
+                </h5>
+            </div>
+
+            <hr />
+        </div>
+
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Número</th>
+                        <th scope="col">Prato</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% i = 1 %>
+                    <% @ordermeals.each do |om| %>
+                    <% meal_category = Meal.find(om.meal_id).meal_category_id %>
+                    <tr>
+                        <td> <%= i + @offset %>
+                        <td> <%= Meal.find(om.meal_id).name %> </td>
+                        <td>
+                            <% if meal_category != nil %>
+                                <%= MealCategory.find(meal_category).name %>
+                            <% else %>
+                                Sem categoria
+                            <% end %>
+                        </td>
+                        <td> R$<%= sprintf('%.2f', Meal.find(om.meal_id).price).gsub('.', ',') %> </td>
+                        <td> <%= om.quantity %> </td>
+                        <td> R$<%= sprintf('%.2f', om.quantity * Meal.find(om.meal_id).price).gsub('.', ',') %>
+                    </tr>
+                    <% i += 1 %>
+                    <% end %>
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+
+        <nav class="ddpage">
+            <ul class="pagination justify-content-center">
+                <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                <% if @page > 0 %>
+                    <%= link_to "&laquo;".html_safe, order_path(page: @page - 1), class: "page-link ddpgturn" %>
+                <% end %>
+                </li>
+                <li class="page-item">
+                <% if @page_continue %>
+                    <%= link_to "&raquo;".html_safe, order_path(page: @page + 1), class: "page-link" %>
+                <% end %>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <%= render  "footer" %>
+
+</div>

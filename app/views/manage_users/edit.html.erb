@@ -1,0 +1,59 @@
+<head>
+    <%= stylesheet_link_tag "manage_users", media: "all" %>
+</head>
+
+<div class="containerColumn">
+    
+    <%= render  "backoffice_header" %>
+
+    <div class="rowBody">
+
+        <div class="container-fluid view-title">
+            <div class="smaller-gutter">
+                <h5>Editar pedido</h5>
+            </div>
+            <hr />
+        </div>
+
+        <%= form_for(@user, as: @user, url: manage_user_path(@user, page: @page), html: { method: :put }) do |f| %>
+        <div class="form-group container-fluid">
+
+            <div class="row smaller-gutter">
+                <div class="col-md field">
+                    <%= f.label "Nome" %>
+                    <%= f.text_field :name, autocomplete: "Nome", class: "form-control" %>
+                </div>
+
+                <div class="col-md">
+                    <%= f.label "Perfil" %>
+                    <%= f.select :is_admin, options_for_select([['Administrador', 1], ['Usuário', 0]], (@user.is_admin || 0)), {}, {:class => "form-control"} %>
+                </div>
+            </div>
+
+            <div class="row smaller-gutter">
+                <div class="col-md field">
+                    <%= f.label "Email" %>
+                    <%= f.text_field :email, value: @user.email, class: "form-control" %>
+                </div>
+
+                <div class="col-md field">
+                    <%= f.label "Cadastrado em" %>
+                    <%= f.text_field :created_at, value: @user.created_at.strftime("%d/%m/%Y"), class: "form-control", readonly: true %>
+                </div>
+            </div>
+
+            <div class="row smaller-gutter">
+                
+                    <%= f.submit "atualizar usuário", class: "btn btn-success ddbtn" %>
+                
+
+                
+                    <%= link_to "voltar", manage_users_path, class: "btn btn-secondary ddbtn", style:"margin-left: 1em;" %>
+                
+            </div>
+        </div>
+        <% end %>
+    </div>
+
+    <%= render  "footer" %>
+</div>

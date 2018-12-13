@@ -1,0 +1,92 @@
+<head>
+  <%= stylesheet_link_tag "marco", media: "all" %>
+</head>
+
+<div class="navbar logo">
+  <a class="navbar-brand" href="#">dinnerdash</a>
+</div>
+
+<div class="ddnavbar">
+  <div class="row no-gutters">
+    <div class="col-sm-4">
+      <a class="nav-link" href="#">perfil</a>
+    </div>
+    <div class="col-sm-4">
+        <%= link_to('sair', destroy_user_session_path, method: :delete, class: "nav-link") %> 
+    </div>
+  </div>
+
+</div>
+
+<div class="title">
+  <div class="container-fluid">
+    <div class="row smaller-gutter">
+      <div class="col-md title-t">
+        <h1>Seu Perfil</h1>
+        <h5>Atualize os seus dados pessoais e senha.</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="aba">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+  <div class="form-group container-fluid">
+
+
+    <div class="row smaller-gutter">
+      <div class="col-md field">
+        <%= f.label "Nome" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "Nome", class: "form-control" %>
+      </div>
+
+      <div class="col-md field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "Email", class: "form-control" %>
+      </div>
+    </div>
+
+
+    <div class="row smaller-gutter">
+      <div class="col-md field">
+        <%= f.label "Nova senha (deixe em branco caso não queira alterar)" %>
+        <%= f.password_field :password, autocomplete: "Nova senha", class: "form-control" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> caracteres, no mínimo</em>
+        <% end %>
+      </div>
+
+      <div class="col-md field">
+        <%= f.label "Senha atual, por questão de segurança" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+    </div>
+
+
+    <div class="row smaller-gutter">
+      <div class="col-md">
+        <%= f.submit "atualizar meu perfil", class: "btn btn-success ddbtn" %>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% end %>
+
+</div>
+
+<footer class="ddfooter container-fluid">
+  <div class="row smaller-gutter">
+    <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
+    <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
+  </div>
+
+</footer>
+
+<div id="background">
+  <div class="darken-overlay"></div>
+</div>

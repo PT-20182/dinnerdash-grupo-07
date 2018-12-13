@@ -1,0 +1,172 @@
+<html>
+    <header>
+    </header>
+    <body>
+        <%= render partial:'/shared/headerCheckout' %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="
+    position: relative;">
+            <div class="navbar-bordas">
+                <strong>Pedido recebido!</strong> Aguarde na sua mesa.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="top: -10px;position: relative;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="div">
+            <div class="div-coluna">
+                <h3>
+                    Seu último pedido:
+                </h3>
+                <p>
+                    Aguarde o seu pedido ser entregue.
+                </p>
+                <div class="div-linha">
+                    <% @orderMeals.each do |orderMeal| %>
+                        <% meal = Meal.find(orderMeal.meal_id)%>
+                        <% order = Order.find(orderMeal.order_id)%>
+                        <div class="item-carrinho">
+                            <%= image_tag  meal.image, class:"item-carrinho-img" %>
+                            
+                            <div class="item-carrinho-body">
+                                <span class="subsubTitle"> <%=meal.name%> </span>
+                                <br>
+                                <span class="text-muted mb-0">Quantidade: <%= number_with_precision(orderMeal.quantity, precision: 0) %> </span>
+                                <br>
+                                <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %> </span>
+                                <br>
+                                <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(orderMeal.quantity*meal.price, precision: 2) %></span>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="div">
+            <div class="div-coluna">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">pedido de nº</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Preço total</th>
+                            <th scope="col">Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @todos.each do |um|%>
+                            <tr>
+                                <td>
+                                    <%= um.id %>
+                                </td>
+                                <% status = Situation.find(um.situation_id)%>
+                                <% if status.description == "Pendente"%>
+                                    <td class="entregue">
+                                        <div class="status">
+                                            Pendente
+                                        </div>
+                                    </td>
+                                <%  elsif status.description == "Entregue" %>
+                                    <td class="entregue">
+                                        <div class="status">
+                                            Entregue
+                                        </div>
+                                    </td>
+                                <%  elsif status.description == "Cancelado" %>
+                                    <td class="cancelado">
+                                        <div class="status">
+                                            Cancelado
+                                        </div>
+                                    </td>
+                                <%  end %>
+                                <td><%= um.created_at.strftime("%d/%m/%Y") %></td>
+                                <td>R$ <%= number_with_precision(um.price, precision: 2) %></td>
+                                <td>
+                                    <span data-toggle="modal" data-target="#order_meal" style="color:blue;"> ver itens pedidos </span>
+                                    <div class="modal fade" id="order_meal" tabindex="-1" role="dialog" aria-labelledby="order" aria-hidden="true",>
+                                    <div class="modal-dialog modal-lg" role="document" style="max-width:700px; min-height:0; flex-wrap: wrap;">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" >Detalhes do pedido</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="order">
+                                            <div class="wrapflex">
+                                                <% orderMeals = []%>
+                                                <% orderMeals = OrderMeal.where("order_id = ?", um.id)%>
+                                                <% orderMeals.each do |orderMeal|%>
+                                                    <% meal = Meal.find(orderMeal.meal_id) %>
+                                                    <% order = Order.find(orderMeal.order_id) %>
+                                                <div class="item-carrinho">
+                                                    <%= image_tag  meal.image, class:"item-carrinho-img" %>
+                                                    <div class="item-carrinho-body">
+                                                        <span class="subsubTitle"> <%=meal.name%> </span>
+                                                        <br>
+                                                        <span class="text-muted mb-0">Quantidade: <%= number_with_precision(orderMeal.quantity, precision: 0) %> <%= um.id%></span>
+                                                        <br>
+                                                        <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %> </span>
+                                                        <br>
+                                                        <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(orderMeal.quantity*meal.price, precision: 2) %></span>                                            
+                                                    </div>
+                                                </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>                               
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+                <div class="grayline"> </div>
+
+                
+
+                <nav aria-label="Page navigation example" style="margin-top: 10px;">
+                    <ul class="pagination">
+                        <% if @page != 0 %>
+                            <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item disabled">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                        <% if @page < @num_pages-1 %>
+                            <li class="page-item">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item  disabled">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <%= render partial:'/shared/footer' %>
+    </body>
+</html>

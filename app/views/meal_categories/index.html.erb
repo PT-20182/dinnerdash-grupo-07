@@ -1,0 +1,52 @@
+<%= render partial: 'backoffice_header' %>
+<div class="div">
+    <div class="div-coluna">
+        <table class="table-categoria-de-refeicao">
+            <thead class="table-header-categoria-de-refeicao">
+                <tr class="table-categoria-de-refeicao-linha">
+                    <th class="table-header-categoria-de-refeicao-nome table-categoria-de-refeicao-coluna">
+                        Nome
+                    </th>
+                    <th class="table-header-categoria-de-refeicao-numero table-categoria-de-refeicao-coluna">
+                        Número de Refeições
+                    </th>
+                    <th class="table-header-categoria-de-refeicao-data table-categoria-de-refeicao-coluna">
+                        Cadastrada em
+                    </th>
+                    <th class="table-categoria-de-refeicao-coluna" colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody class="table-body-categoria-de-refeicao">
+                <% @meal_categories.each do |meal_category| %>
+                    <tr class="table-categoria-de-refeicao-linha">
+                        <td class="table-body-categoria-de-refeicao-nome table-categoria-de-refeicao-coluna">
+                            <%= meal_category.name %>
+                        </td>
+                        <td class="table-body-categoria-de-refeicao-numero table-categoria-de-refeicao-coluna">
+                            <%= Meal.where("meal_category_id = ?", meal_category.id).count %>
+                        </td>
+                        <td class="table-body-categoria-de-refeicao-data table-categoria-de-refeicao-coluna">
+                            <%= meal_category.created_at.strftime("%d/%m/%Y") %>
+                        </td>
+                        <td class="table-body-categoria-de-refeicao-editar table-categoria-de-refeicao-coluna">
+                            <%= link_to 'editar', edit_meal_category_path(meal_category),  method: :get, class: 'table-categoria-de-refeicao-editar' %>
+                        </td>
+                        <td class="table-body-categoria-de-refeicao-excluir table-categoria-de-refeicao-coluna">
+                            <%= link_to 'excluir', meal_category_path(meal_category), method: :delete, data: { confirm: 'Deseja excluir a categoria de refeição?' }, class: 'table-categoria-de-refeicao-excluir' %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <div class="div-button-nova-meal-category">
+            <%= link_to 'nova categoria de refeicao', new_meal_category_path, method: :get, class: 'btn btn-success'%>
+        </div>
+    </div>
+</div>
+<%= render partial: '/shared/footer'%>
+<script>
+    $(document).ready( function () {
+        $('.table-de-categoria-refeicao').DataTable();
+    } );
+</script>	
+

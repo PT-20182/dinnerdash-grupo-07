@@ -1,0 +1,43 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="container-fluid screen-login-size">
+    <div class="row">
+      <div class="col-8">
+        <%=image_tag("login_img.jpg", alt: "img", class: "img-size")%>
+      </div>
+
+      <div class="col-4">
+        <div class="form-size">
+          <h2 class="h-login">dinnerdash</h2>
+          <div>
+              <% if notice %>
+                  <p class="alert alert-success"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+              <% end %>
+          </div>
+          
+          <div class="field form-group">
+            <%= f.label :email %> <br/>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input" %>
+          </div>
+
+          <div class="field form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "current-password", class: " form-control input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "fazer login", class: "btn btn-success button-size button" %>
+          </div>
+
+          <hr id="meuHr">
+          <h5 class="h-login">Não possui conta?</h5>
+          <div class="actions">
+            <%= link_to "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success button-size" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

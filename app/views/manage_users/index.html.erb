@@ -1,0 +1,66 @@
+<head>
+    <%= stylesheet_link_tag "manage_users", media: "all" %>
+</head>
+
+<div class="containerColumn">
+
+    <%= render "backoffice_header" %>
+
+    <div class="rowBody">
+
+        <div class="rowMeals">
+            <% if flash[:alert] %>
+                <div class="row">
+                    <div class="col-md alert alert-danger" role="alert"><%= flash[:alert] %></div>
+                </div>
+            <% end %>
+            
+                <table class="col">
+                    <tr class="table_h">
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Cadastrado em</th>
+                        <th></th><th></th>
+                    </tr>
+
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td>
+                            <% if user.is_admin %>
+                                <span class="admin-tag">admin</span>
+                            <% end %>
+                            <%= user.name %>
+                        </td>
+                        <td> <%= user.email %> </td>
+                        <td> <%= user.created_at.strftime("%d/%m/%Y") %> </td>
+                        <td class="editar"> <%= link_to "editar", edit_manage_user_path(user, page: @page) %> </td>
+                        <td class="excluir"> <%= link_to "excluir", manage_user_path(user), method: :delete, data: {confirm: "Excluir usuário?"} %> </td>
+                    </tr>
+                    <% end %>
+                </table>
+            
+
+
+            <nav class="ddpage">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                    <% if @page > 0 %>
+                        <%= link_to "&laquo;".html_safe, manage_users_path(page: @page - 1), class: "page-link ddpgturn", style: "font-size: 1.5em;" %>
+                    <% end %>
+
+                  </li>
+                  <li class="page-item">
+                    <% if @page_continue %>
+                        <%= link_to "&raquo;".html_safe, manage_users_path(page: @page + 1), class: "page-link", style: "font-size: 1.5em;" %>
+                    <% end %>
+                  </li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </div>
+
+    <%= render  "footer" %>
+
+</div>

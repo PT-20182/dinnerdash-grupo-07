@@ -1,0 +1,61 @@
+<div class="containerColumn"> 
+
+		<%= render  "backoffice_header" %>
+
+		<div class="rowBody ">
+      <h3>Criar refeição</h3>
+      <div class = "grayline"></div>
+      <%= form_with model: @meal, class: "twoColumn" do |form| %>
+        
+          <div class="column3">
+            <label>Nome</label>
+            <%= form.text_field :name, placeholder: "Nome", class:"textBox" %>
+          </div>
+
+          <div class="column3">
+						<label>Categoria</label>
+						<%= form.select(:meal_category_id, @meal_categories.collect{|meal_category| [meal_category.name,
+						meal_category.id]}, {}, :class => "textBox") %>
+          </div>
+
+          <div style="width:100%; ">
+            <label>Descrição</label>
+            <%= form.text_field :description, placeholder: "Descrição", class:"textBox",style:"padding-bottom: 5em;" %>         
+          </div>
+
+          <div class="column3">
+            <label>Preço</label>
+            <%= form.text_field :price, placeholder: "Preço", class:"textBox" %>
+          </div>
+
+          <div class="column3">
+						<label>Imagem</label>
+						<%= form.file_field :image, class:"textBox" %>
+          </div>
+
+          <div style="width:100%;">
+            <%= form.check_box :available, placeholder: "available" %>
+            <span>Esta refeição não estará disponível no cardápio.</span>
+          </div>
+
+      
+          <div style="width:100%;">
+          <%= form.submit 'criar refeição', :class => "textBox confirmBox", :style => "width:14em;" %>
+          <%= link_to  '<button type="button" class="textBox confirmBox" style="width:10em">voltar</button>'.html_safe, meals_path %>
+          </div>
+
+      <% end %>
+    </div>
+
+		<div class="navBar footer">
+			<div class="fullLength">
+				<div class="leftPart">
+					<span > dinnerdash | todos os direitos reservados</span>
+				</div>
+				<div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
+					<span>desenvolvido pelo Grupo 07</span>
+				</div>
+			</div>
+		</div>	
+	
+</div>

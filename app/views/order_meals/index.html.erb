@@ -1,0 +1,111 @@
+<div class="containerColumn">
+    <div class="rowBodyHeader homeImg">
+
+        <div class="rowOptions">
+
+            <div class="leftPart">
+                <%= link_to "dinnerdash", root_path, class: "noChangeLink dinnerdashLogo" %>
+            </div>
+
+            <div class="rightPart" >
+                <% if user_signed_in? %>
+                    <% if current_user.is_admin? %>
+                        <%= link_to "backoffice", meals_path, class:"noChangeLink textSpacement" %>
+                    <% end %>
+                    
+                    <%= link_to "perfil", edit_user_registration_path, class: "noChangeLink textSpacement" %>
+                    <%= link_to "sair", destroy_user_session_path, method: :delete, class: "noChangeLink textSpacement" %>
+                <% else %>
+                    <%= link_to "entrar", new_user_session_path, class: "noChangeLink textSpacement" %>
+                    <%= link_to "cadastro", new_user_registration_path, class: "noChangeLink textSpacement" %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="titleBackOffice">
+            <% if user_signed_in? %>
+                <span class="bigTitle1">Bem vindo, <%= current_user.name %></span>
+                <br>
+                <span class="subTitle">Neste espaço você pode finalizar seu pedido.</span>
+            <% else %>
+                <span class="bigTitle1">Monte o seu prato</span>
+                <br>
+                <span class="subTitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</span>
+            <% end %>
+
+        </div>
+
+    </div>
+
+    <div class="rowBody ">
+        <div class="rowBodyDiv">
+            <h3 class="text-gray">O seu pedido:</h3>
+
+            <span class="text-muted mb-0">Confira os itens pedidos antes de finalizar o pedido.</span>
+            <div class="menuCategory">
+                <%= render "carts/cart" %>
+            </div>
+            <div class="grayline"></div>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <h3 class="text-gray">Esqueceu algo?<span style="color:#28a745;"></span></h3>
+                    <span class="text-muted mb-0"><%= link_to "Clique aqui", :back %> para retornar ao nosso menu</span>
+                </div>
+                <div>
+                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@todos, precision: 2) %></span></h3>
+                    <div class="login_and_sigin">
+                        <% if user_signed_in? %>
+                            <div class="actions", style="width:49%; ">
+                                <%= link_to "finalizar e pagar", orders_path, method: :post ,class: "textBox confirmBox btn btn-success" %>
+                            </div>
+                        <% else %>
+                            <div class="actions", style="width:49%;">
+                                <%= link_to "entrar com minha conta", new_user_session_path, class: "textBox btn btn-outline-success" %>
+                            </div>
+                            <div class="actions", style="width:49%;">
+                                <%= link_to "fazer o meu cadastro", new_user_registration_path, class: "textBox confirmBox btn btn-success" %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+                 
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#order_meal">
+        Detalhes do pedido
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="order_meal" tabindex="-1" role="dialog" aria-labelledby="order" aria-hidden="true",>
+        <div class="modal-dialog modal-lg" role="document" style="max-width:700px; min-height:0; flex-wrap: wrap;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Detalhes do pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="order">
+                <div class="wrapflex">
+                    <% session[:cart].each do |item| %>
+                        <% item.keys.each do |meal_id| %>
+                            <% meal = Meal.find(meal_id) %>
+                            <div id="cartItm" class="cartItem" style="max-width:308px;" >
+                                <%= render partial: "carts/cart_info", locals:{meal: meal, item: item} %>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <%= render  "footer" %>
+</div>

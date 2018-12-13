@@ -1,0 +1,74 @@
+<head>
+    <%= stylesheet_link_tag "orders_index", media: "all" %>
+</head>
+    
+<div class="containerColumn">
+
+    <%= render  "backoffice_header" %>
+
+    <div class="rowBody">
+
+        <div class="container-fluid">
+            <div class="row smaller-gutter">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Pedido de nº</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Preço total</th>
+                        <th scope="col">Detalhes</th>
+                        <th scope="col" colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @orders.each do |order| %>
+                    <tr>
+                        <td> <%= order.id %> </td>
+                        <td>
+                            <% case order.situation_id %>
+                            <% when 1 %>
+                                <div class="pendente">pendente
+                            <% when 2 %>
+                                <div class="entregue">entregue
+                            <% when 3 %>
+                                <div class="cancelado">cancelado
+                            <% end %>
+                            </div>
+                        </td>
+                        <td> <%= order.created_at.strftime("%d/%m/%Y") %> </td>
+                        <td> <%= User.find(order.user_id).name %> </td>
+                        <td> R$<%= sprintf('%.2f', order.price).gsub('.', ',') %> </td>
+                        <td class="itens"> <%= link_to "ver itens pedidos",  order_path(order) %> </td>
+                        <td class="editar"> <%= link_to "editar", edit_order_path(order) %> </td>
+                        <td class="excluir"> <%= link_to "excluir", order, method: :delete, data: {confirm: "Excluir pedido?"} %> </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            </div>
+
+            <nav class="ddpage">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                    <% if @page > 0 %>
+                        <%= link_to "&laquo;".html_safe, orders_path(page: @page - 1), class: "page-link ddpgturn" %>
+                    <% end %>
+
+                  </li>
+                  <li class="page-item">
+                    <% if @page_continue %>
+                        <%= link_to "&raquo;".html_safe, orders_path(page: @page + 1), class: "page-link" %>
+                    <% end %>
+                  </li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </div>
+
+    <%= render  "footer" %>
+
+</div>

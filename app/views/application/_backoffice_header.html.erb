@@ -1,0 +1,31 @@
+<div class="rowBodyHeader officeImg">
+
+    <div class="rowOptions">
+
+        <div class="leftPart">
+            <%= link_to  "dinnerdash", root_path, class:"dinnerdashLogo noChangeLink" %>
+        </div>
+
+        <div class="rightPart" >
+            <span class="textSpacement" style="color:orange">backoffice</span>
+            <%= link_to"perfil", edit_user_registration_path, class:"noChangeLink textSpacement" %>
+            <%= link_to"sair", destroy_user_session_path, method: :delete, class:"noChangeLink
+            textSpacement" %>
+        </div>
+
+    </div>
+
+    <div class="titleBackOffice">
+        <span class="bigTitle1">Backoffice</span>
+        <br>
+        <span class="subTitle">Gerencie pedidos, refeições e mais.</span>
+    </div>
+
+</div>
+
+<div class="navBar">
+    <%= link_to  "Pedidos", orders_path ,class: "navOption textSpacement notSelected noChangeLink" %>
+    <%= link_to  "Usuários", manage_users_path ,class: "navOption textSpacement notSelected noChangeLink" %>
+    <%= link_to  "Refeições", meals_path, class:"navOption textSpacement notSelected noChangeLink" %>
+    <%= link_to  "Categorias de Refeição", meal_categories_path ,class: "navOption textSpacement notSelected noChangeLink" %>
+</div>
