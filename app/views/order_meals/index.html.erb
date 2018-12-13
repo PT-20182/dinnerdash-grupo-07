@@ -1,3 +1,4 @@
+<%preco_total_pedido = 0 %>
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
 
@@ -62,6 +63,7 @@
                                 <%= render partial: "carts/cart", locals: {item: item, meal: meal} %>
                             </div>
                         </div>
+                        <% preco_total_pedido += item[meal.id.to_s][1] %>
                     <% end %>
                 <% end %>
             </div>
@@ -72,7 +74,7 @@
                     <span class="text-muted mb-0"><%= link_to "Clique aqui", :back %> para retornar ao nosso menu</span>
                 </div>
                 <div>
-                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@total, precision: 2) %></span></h3>
+                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(preco_total_pedido, precision: 2) %></span></h3>
                     <div class="login_and_sigin">
                         <% if user_signed_in? %>
                             <div class="actions", style="width:49%; ">
