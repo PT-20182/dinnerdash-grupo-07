@@ -1,5 +1,5 @@
 <% session[:cart] ||= [] %>
-<% preco_total_pedido = 0%>
+
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
 
@@ -14,7 +14,6 @@
                     <% if current_user.is_admin? %>
                         <%= link_to "backoffice", meals_path, class:"noChangeLink textSpacement" %>
                     <% end %>
-                    
                     <%= link_to "perfil", edit_user_registration_path, class: "noChangeLink textSpacement" %>
                     <%= link_to "sair", destroy_user_session_path, method: :delete, class: "noChangeLink textSpacement" %>
                 <% else %>
@@ -41,62 +40,46 @@
     
     <div class="rowBody ">
         <div class="rowBodyDiv">
-            <h2 class="text-gray">Frutas</h2>
-            <div class="menuCategory">
-
-            <% @meals.each do |meal| %>
-                <div class="card menuCard">
-                    <div class="card menuItemImg">
-                        <%= image_tag('maca.jpg', class: "card-img") %>
-                        <div class="card-img-overlay d-flex align-items-end noPadding">
-                                <div class="menuItemTitle"><%= meal.name %></div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted mb-0"><%= meal.description %></p>
-                        <p class="priceText">R$<%= number_with_precision(meal.price, precision: 2) %> por porção</p>
-                        <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>
-                            <div class="form-group">
-                             <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
-                                <%= select_tag 'qtd', options_for_select(1..10, :selected=> :qtd_meal), class: "form-control form-control-sm" %>
-                                <div class="actions">
-                                    <%= submit_tag "adicionar ao meu prato", class: "textBox confirmBox btn btn-success", qtd: :qtd_meal, id: meal.id %>
+            
+            <% @meal_categories.each do |category|%>
+                <% if category.meals.count > 0%>
+                    <h2 class="text-gray"><%= category.name %></h2>
+                    <div class="grayline"> </div>
+                    <div class="menuCategory">
+            
+                    <% category.meals.each do |meal| %>
+                        <% if meal.available == false %>
+                            <div class="card menuCard">
+                                <%= render  "card_image", meal: meal %>
+                                <div class="card-body" style="padding:0.7em;">
+                                    <p class="text-muted mb-0"><%= meal.description %></p>
+                                    <p class="priceText">R$<%= number_with_precision(meal.price, precision: 2) %> por porção</p>
+                                    <%= form_tag(add_path(id: meal.id), method: :put, remote: true) do %>
+                                        <div class="form-group">
+                                        <%= label_tag :qtd, "Quantidade", class: "text-gray" %>
+                                            <%= select_tag 'qtd', options_for_select(1..10, :selected=> :qtd_meal), class: "form-control form-control-sm" %>
+                                            <div class="actions">
+                                                <%= submit_tag "adicionar ao meu prato", class: "textBox confirmBox btn btn-success", qtd: :qtd_meal, id: meal.id %>
+                                            </div>
+                                        </div>
+                                    <% end %>
                                 </div>
                             </div>
                         <% end %>
+                    <% end %>
                     </div>
-                </div>
+                    <div class="grayline"></div>
+                <% end %>
             <% end %>
-            </div>
         </div>
-        <div class="grayline"></div>
+        
         <div class="rowBodyDiv">
             <h2 class="text-gray">Finalizou seu prato?</h2>
             <span class="text-muted mb-0"class="text-muted mb-0">Confira os itens pedidos antes de confirmar o pedido.</span>
             <div class="menuCategory">
                 
-                <% session[:cart].each do |item| %>
-                    <% item.keys.each do |meal_id| %>
-                        <% meal = Meal.find(meal_id) %>
-                        <div id="cartItm" class="cartItem">
-                            <div class="cartItemImg">
-                            </div>
-                            <div class="cartItemBody">
-                                <span class="subsubTitle"> <%= meal.name %> </span>
-                                <br>
-                                <span class="text-muted mb-0">Quantidade: <%= item[meal.id.to_s][0] %></span>
-                                <br>
-                                <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %></span>
-                                <br>
-                                <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(item[meal.id.to_s][1], precision: 2) %></span>
-                            </div>
-                            <div class="cartItemForm">
-                                <%= render partial: "carts/cart", locals: {item: item, meal: meal} %>
-                            </div>
-                        </div>
-                        <% preco_total_pedido += item[meal.id.to_s][1] %>
-                    <% end %>
-                <% end %>
+             <%= render  "carts/cart" %>
+
             </div>
             <div class="grayline"></div>
 

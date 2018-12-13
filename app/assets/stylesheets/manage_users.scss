@@ -5,12 +5,10 @@
 
 * {
 	font-family: 'Open sans', sans-serif;
-	color: #9f9f9f;
-	font-size: 0.939em;
+	
 }
 
 body {
-	background-color: black;
 }
 
 #background {
@@ -48,17 +46,12 @@ body {
 }
 
 .navbar-brand {
-	color: white;
-	font-family: 'Amaranth';
-	font-size: 1.49em;
 }
 
 .navbar-brand a:link, a:visited {
-	color: white;
 }
 
 .navbar-brand a:active, a:hover {
-	color: rgb(231, 231, 231);
 }
 
 .nav-link {
@@ -94,7 +87,6 @@ body {
 
 .ddsubnav-container {
 	width: 500vw;
-    background-color: #343a40;
 }
 
 
@@ -141,9 +133,6 @@ body {
 }
 
 .view-title {
-	margin-top: 	-2em;
-	margin-bottom: 	-2em;
-	margin-left:	0.5em;
 }
 
 .view-title h5 {
@@ -164,9 +153,6 @@ body {
 }
 
 .container-fluid {
-	padding-top: 2.5%;
-	padding-left: 6%;
-	padding-right: 6%;
 
 	width: 100%;
 
@@ -229,10 +215,9 @@ label {
 
 .table_h th {
 	background-color: #DEE2E6;
+	padding: 0.5em 0;
+	padding-left: 1em;
 	color: #6B6C6D;
-	padding-bottom: 1%;
-	padding-top: 1%;
-	padding-left: 1%;
 	text-align: left;
 }
 
@@ -242,17 +227,16 @@ label {
 }
 
 table {
-    border-spacing: 0;
-    margin-top: -2%;
+	border-spacing: 0;
+	font-size: 0.9em;
     height: 60%;
-    font-size: 1.2em;
 }
 
 td {
 	color: #868686;
 	text-align: left;
-    padding: 0.5%;
-    padding-left: 1%;
+	padding: 0.5em 0;
+    padding-left: 1em;
 	border-bottom: 2px solid #DEE2E6;
 }
 
@@ -323,9 +307,10 @@ td {
 .admin-tag {
     color: white;
     background-color: #28a745;
-    padding:        0.2em;
-    padding-left:   0.5em;
-    padding-right:  0.5em;
+    padding:        0.25em;
+    padding-left:   0.75em;
+	padding-right:  0.75em;
+	font-size: 0.75em;
     border-radius:  5px;
 }
 

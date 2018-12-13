@@ -1,50 +1,15 @@
 <head>
     <%= stylesheet_link_tag "manage_users", media: "all" %>
 </head>
-    <div class="navbar logo">
-        <%= link_to('dinnerdash', root_path, class: "navbar-brand") %> 
-    </div>
-    
-    <div class="ddnavbar">
-        <div class="row no-gutters">
-            <div class="col">
-                <%= link_to 'backoffice', orders_path, class: 'nav-link backoffice' %>
-            </div>
-            <div class="col">
-                <a class="nav-link" href="#">perfil</a>
-            </div>
-            <div class="col">
-                <%= link_to('sair', destroy_user_session_path, method: :delete, class: "nav-link") %> 
-            </div>
-        </div>
-    </div>
-    
-    <div class="title">
-        <div class="container-fluid">
-            <div class="row smaller-gutter">
-                <div class="col-md title-t">
-                    <h1>Backoffice</h1>
-                    <h5>Gerencie pedidos, refeições e mais.</h5>
-                </div>
-            </div>
-        </div>
-    </div>
 
+<div class="containerColumn">
     
-    <div class="aba">
+    <%= render  "backoffice_header" %>
 
-        <div class="ddsubnav-container container-fluid">
-            <ul class="ddsubnav row">
-            
-                <li><a href="#">Pedidos</a></li>
-                <li class="ddsubnav-current"><a href="#">Usuários</a></li>
-                <li><a href="#">Refeições</a></li>
-                <li><a href="#">Categorias de Refeição</a></li>           
-            </ul>
-        </div>
+    <div class="rowBody">
 
         <div class="container-fluid view-title">
-            <div class="row smaller-gutter">
+            <div class="smaller-gutter">
                 <h5>Editar pedido</h5>
             </div>
             <hr />
@@ -78,26 +43,17 @@
             </div>
 
             <div class="row smaller-gutter">
-                <div class="col-1">
+                
                     <%= f.submit "atualizar usuário", class: "btn btn-success ddbtn" %>
-                </div>
+                
 
-                <div class="col-1 offset-sm-1">
-                    <%= link_to "voltar", manage_users_path, class: "btn btn-secondary ddbtn" %>
-                </div>
+                
+                    <%= link_to "voltar", manage_users_path, class: "btn btn-secondary ddbtn", style:"margin-left: 1em;" %>
+                
             </div>
         </div>
         <% end %>
     </div>
 
-    <footer class="ddfooter container-fluid">
-        <div class="row smaller-gutter">
-            <div class="col-md" style="font-weight: bold;">dinnerdash | todos os direitos reservados</div>
-            <!-- Fonte não é igual -->
-            <div class="col-md" style="text-align: right; font-size: 0.75em;">desenvolvido por CJR</div>
-        </div>
-    </footer>
-
-    <div id="background">
-        <div class="darken-overlay"></div>
-    </div>
+    <%= render  "footer" %>
+</div>

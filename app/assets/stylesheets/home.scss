@@ -11,6 +11,11 @@ body{
     display: flex;
 }
 
+.redmImg{
+	width: 100%;
+	height: 100%;
+}
+
 .noPadding{
     padding: 0;
 }
@@ -25,27 +30,29 @@ body{
 .cartItem{
 	display: flex;
     margin: 0.5em 0.5em;
-    width: 525px;
+    
     height: 115px;
     border: 1px solid rgba(0,0,0,.125);
 }
 
 .cartItemImg{
-    width:20%;
-    background-image: url(maca.jpg);
-    background-repeat: no-repeat;
-	background-size: contain;
+    width:105px;
 	border-right: 1px solid rgba(0,0,0,.125);
 }
 
+.wrapflex{
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .cartItemBody{
-    width:50%;
+    width:263px;
     padding: 0 0.5em;
 }
 
 .cartItemForm{
 	padding-right: 5px;
-    width:30%;
+    width:157px;
 }
 .menuCategory{
     display: flex;
@@ -253,6 +260,7 @@ body{
 }
 
 .titleBackOffice{
+	color: white;
 	position: absolute;
 	bottom: 10%;
 	width: 38%;

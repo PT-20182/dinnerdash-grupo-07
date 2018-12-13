@@ -1,7 +1,12 @@
 class MealCategoriesController < ApplicationController
+    before_action :check_admin
+    PRODUCTS_SIZE = 10
+
+
     def index
-        @meal_categories = MealCategory.all
-        #@meal_categories = MealCategory.order(created_at: :desc).limit(10).offset(@page * 10)
+        @page = (params[:page] || 0).to_i
+        @meal_categories = MealCategory.offset(PRODUCTS_SIZE * @page).limit(PRODUCTS_SIZE)
+        @num_pages = (MealCategory.all.count.to_f / PRODUCTS_SIZE).ceil
     end
 
     def new
@@ -41,5 +46,11 @@ class MealCategoriesController < ApplicationController
 
     def meal_category_params
         params.require(:meal_category).permit(:name)
+    end
+
+    def check_admin
+        unless user_signed_in? && current_user.is_admin
+            redirect_to :root
+        end
     end
 end

@@ -1,35 +1,6 @@
 <div class="containerColumn"> 
 
-		<div class="rowBodyHeader officeImg">
-
-			<div class="rowOptions">
-
-				<div class="leftPart">
-					<span class="dinnerdashLogo">dinnerdash</span>
-				</div>
-
-				<div class="rightPart" >
-					<span class="textSpacement" style="color:orange">backoffice</span>
-					<a href="perfil.html" class="noChangeLink"><span class="textSpacement">perfil</span></a>
-					<a href="..\Pratica 2\login.html" class="noChangeLink"><span class="textSpacement">sair</span></a>
-				</div>
-
-			</div>
-
-			<div class="titleBackOffice">
-				<span class="bigTitle1">Backoffice</span>
-				<br>
-				<span class="subTitle">Gerencie pedidos, refeições e mais.</span>
-			</div>
-
-		</div>
-    
-		<div class="navBar">
-			<span class="navOption textSpacement notSelected">Pedidos</span>
-			<span class="navOption textSpacement notSelected">Usuários</span>
-			<span class="navOption textSpacement ">Refeições</span>
-			<span class="navOption textSpacement notSelected">Categorias de Refeição</span>
-		</div>
+		<%= render  "backoffice_header" %>
 
 		<div class="rowBody ">
       <h3>Criar refeição</h3>
@@ -42,6 +13,9 @@
           </div>
 
           <div class="column3">
+						<label>Categoria</label>
+						<%= form.select(:meal_category_id, @meal_categories.collect{|meal_category| [meal_category.name,
+						meal_category.id]}, {}, :class => "textBox") %>
           </div>
 
           <div style="width:100%; ">
@@ -55,6 +29,8 @@
           </div>
 
           <div class="column3">
+						<label>Imagem</label>
+						<%= form.file_field :image, class:"textBox" %>
           </div>
 
           <div style="width:100%;">
@@ -64,7 +40,7 @@
 
       
           <div style="width:100%;">
-          <%= form.submit 'atualizar refeição', :class => "textBox confirmBox", :style => "width:14em;" %>
+          <%= form.submit 'criar refeição', :class => "textBox confirmBox", :style => "width:14em;" %>
           <%= link_to  '<button type="button" class="textBox confirmBox" style="width:10em">voltar</button>'.html_safe, meals_path %>
           </div>
 

@@ -37,12 +37,14 @@
         </div>
 
     </div>
+
     <div class="rowBody ">
         <div class="rowBodyDiv">
             <h3 class="text-gray">O seu pedido:</h3>
 
             <span class="text-muted mb-0">Confira os itens pedidos antes de finalizar o pedido.</span>
             <div class="menuCategory">
+
                 
                 <% session[:cart].each do |item| %>
                     <% item.keys.each do |meal_id| %>
@@ -66,6 +68,9 @@
                         <% preco_total_pedido += item[meal.id.to_s][1] %>
                     <% end %>
                 <% end %>
+
+                <%= render "carts/cart" %>
+
             </div>
             <div class="grayline"></div>
             <div style="display: flex; justify-content: space-between;">
@@ -74,11 +79,13 @@
                     <span class="text-muted mb-0"><%= link_to "Clique aqui", :back %> para retornar ao nosso menu</span>
                 </div>
                 <div>
-                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(preco_total_pedido, precision: 2) %></span></h3>
+
+                    <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@todos, precision: 2) %></span></h3>
+
                     <div class="login_and_sigin">
                         <% if user_signed_in? %>
                             <div class="actions", style="width:49%; ">
-                                <%= link_to "finalizar e pagar", checkout_path, class: "textBox confirmBox btn btn-success" %>
+                                <%= link_to "finalizar e pagar", orders_path, method: :post ,class: "textBox confirmBox btn btn-success" %>
                             </div>
                         <% else %>
                             <div class="actions", style="width:49%;">
@@ -90,20 +97,44 @@
                         <% end %>
                     </div>
                 </div>
-            </div>     
+            </div>
+                 
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#order_meal">
+        Detalhes do pedido
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="order_meal" tabindex="-1" role="dialog" aria-labelledby="order" aria-hidden="true",>
+        <div class="modal-dialog modal-lg" role="document" style="max-width:700px; min-height:0; flex-wrap: wrap;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Detalhes do pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="order">
+                <div class="wrapflex">
+                    <% session[:cart].each do |item| %>
+                        <% item.keys.each do |meal_id| %>
+                            <% meal = Meal.find(meal_id) %>
+                            <div id="cartItm" class="cartItem" style="max-width:308px;" >
+                                <%= render partial: "carts/cart_info", locals:{meal: meal, item: item} %>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+            </div>
+            </div>
+        </div>
         </div>
     </div>
 
-    <div class="navBar footer">
-        <div class="fullLength">
-            <div class="leftPart">
-                <span > dinnerdash | todos os direitos reservados</span>
-            </div>
-            <div class="rightPart" style="color: #5C5C5C; font-size: 0.8em">
-                
-                <span>desenvolvido por Grupo-7</span>
-
-            </div>
-        </div>
-    </div>
+    <%= render  "footer" %>
 </div>

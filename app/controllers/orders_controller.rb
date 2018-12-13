@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-    # before_action :check_admin
+    before_action :check_admin, only: [:index, :edit]
 
     ORDERS_PER_PAGE = 8
 
@@ -72,8 +72,8 @@ class OrdersController < ApplicationController
             @order.update(price: total)
 
             # session_cart = [{"1" => [5, 60.0], "2" => [1, 8.0]}]
-
-            redirect_to root_path
+            session[:cart] = []
+            redirect_to checkout_path
         end
     end
 
@@ -90,11 +90,11 @@ class OrdersController < ApplicationController
         params.require(:order).permit(:id, :situation_id)
     end
 
-    # def check_admin
-    #     unless user_signed_in? && current_user.is_admin
-    #         redirect_to :root
-    #     end
-    # end
+    def check_admin
+        unless user_signed_in? && current_user.is_admin
+            redirect_to :root
+        end
+    end
 
     def calcula_preco_total ordermeals
         total = 0
