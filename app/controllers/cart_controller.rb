@@ -1,5 +1,4 @@
 class CartController < ApplicationController
-    @@preco_pedido = 0
     def add_item
         @preco_total
         @qtd_meal = params[:qtd].to_i

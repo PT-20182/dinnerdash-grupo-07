@@ -30,11 +30,11 @@
                             <div class="item-carrinho-body">
                                 <span class="subsubTitle"> <%=meal.name%> </span>
                                 <br>
-                                <span class="text-muted mb-0">Quantidade: <%= orderMeal.quantity %> </span>
+                                <span class="text-muted mb-0">Quantidade: <%= number_with_precision(orderMeal.quantity, precision: 0) %> </span>
                                 <br>
-                                <span class="text-muted mb-0">Preço unitário: R$<%= meal.price%> </span>
+                                <span class="text-muted mb-0">Preço unitário: R$<%= number_with_precision(meal.price, precision: 2) %> </span>
                                 <br>
-                                <span class="text-muted mb-0">Preço total: R$<%= %></span>
+                                <span class="text-muted mb-0">Preço total: R$<%= number_with_precision(orderMeal.quantity*meal.price, precision: 2) %></span>
                             </div>
                         </div>
                     <% end %>
@@ -81,7 +81,7 @@
                                     </td>
                                 <%  end %>
                                 <td><%= um.created_at.strftime("%d/%m/%Y") %></td>
-                                <td><%= um.price %></td>
+                                <td>R$ <%= number_with_precision(um.price, precision: 2) %></td>
                                 <td>
                                     <%= link_to 'ver itens pedidos' %>
                                 </td>
@@ -89,6 +89,41 @@
                         <% end %>
                     </tbody>
                 </table>
+
+                <nav aria-label="Page navigation example" style="margin-top: 10px;">
+                    <ul class="pagination">
+                        <% if @page != 0 %>
+                            <li class="page-item <%= @page == 0 ? 'disabled' : '' %>">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item disabled">
+                                <%= link_to checkout_path(page: @page - 1), ariaLabel: "Previous", class: "page-link" do%>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                        <% if @page < @num_pages-1 %>
+                            <li class="page-item">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li class="page-item  disabled">
+                                <%= link_to checkout_path(page: @page + 1), ariaLabel: "Next", class: "page-link" do%>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </nav>
             </div>
         </div>
         <%= render partial:'/shared/footer' %>

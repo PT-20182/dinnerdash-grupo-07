@@ -10,7 +10,7 @@
 MealCategory.create(name: 'Massa')
 MealCategory.create(name: 'Salada')
 MealCategory.create(name: 'Entrada')
-MealCategory.create(name: 'Parto principal')
+MealCategory.create(name: 'Prato principal')
 MealCategory.create(name: 'Sobremesa')
 
 a = Meal.create(
