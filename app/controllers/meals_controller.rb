@@ -1,4 +1,6 @@
 class MealsController < ApplicationController
+    before_action :check_admin
+    
     def index
         @meals = Meal.all
         #@meal.image.attach(params[:image])
@@ -41,5 +43,11 @@ class MealsController < ApplicationController
 
     def meal_params
         params.require(:meal).permit(:name, :description, :price, :available, :meal_category_id, :image)
+    end
+
+    def check_admin
+        unless user_signed_in? && current_user.is_admin
+            redirect_to :root
+        end
     end
 end

@@ -1,4 +1,5 @@
 class MealCategoriesController < ApplicationController
+    before_action :check_admin
     PRODUCTS_SIZE = 10
 
 
@@ -45,5 +46,11 @@ class MealCategoriesController < ApplicationController
 
     def meal_category_params
         params.require(:meal_category).permit(:name)
+    end
+
+    def check_admin
+        unless user_signed_in? && current_user.is_admin
+            redirect_to :root
+        end
     end
 end

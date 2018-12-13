@@ -10,17 +10,20 @@
                 <!--%= link_to ( ),class: 'noChangeLinkBackoffice' do%-->
                     <!--span class="textSpacement">backoffice</span-->
                 <!--% end %-->
-                <%= link_to ( ),class: 'noChangeLink' do%>
+                <% if current_user.is_admin? %>
+                    <%= link_to "backoffice", meals_path, class:"noChangeLink textSpacement" %>
+                <% end %>
+                <%= link_to edit_user_registration_path,class: 'noChangeLink' do%>
                     <span class="textSpacement">perfil</span>
                 <% end %>
-                <%= link_to ( ),class: 'noChangeLink' do%>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'noChangeLink' do%>
                     <span class="textSpacement">sair</span>
                 <% end %>
             </div>
         </div>
         <div class="titleBackOffice">
             <span class="bigTitle1">
-                Bem-vindo, 
+                Bem-vindo, <%= current_user.name %>
             </span>
             <br>
             <span class="subTitle">
