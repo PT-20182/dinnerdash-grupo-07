@@ -1,6 +1,4 @@
 <% session[:cart] ||= [] %>
-<% @@preco_pedido ||= 0 %>
-
 <div class="containerColumn">
     <div class="rowBodyHeader homeImg">
 
@@ -100,7 +98,7 @@
             </div>
             <div class="grayline"></div>
 
-            <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(@@preco_pedido, precision: 2) %></span></h3>
+            <h3 class="text-gray">Preço total do pedido: <span style="color:#28a745;">R$<%= number_with_precision(0, precision: 2) %></span></h3>
             <span class="text-muted mb-0"class="text-muted mb-0">Para finalizar o pedido, entre com sua conta ou faça o cadastro.</span>
             <div class="login_and_sigin">
                 <% if user_signed_in? %>

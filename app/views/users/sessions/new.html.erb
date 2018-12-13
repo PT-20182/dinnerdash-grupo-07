@@ -8,6 +8,14 @@
       <div class="col-4">
         <div class="form-size">
           <h2 class="h-login">dinnerdash</h2>
+          <div>
+              <% if notice %>
+                  <p class="alert alert-success"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+              <% end %>
+          </div>
           
           <div class="field form-group">
             <%= f.label :email %> <br/>
